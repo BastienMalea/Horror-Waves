@@ -16,7 +16,6 @@ public class Monstre {
     public String getNom() {
         return nom;
     }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -24,7 +23,6 @@ public class Monstre {
     public int getDmg() {
         return dmg;
     }
-
     public void setDmg(int dmg) {
         this.dmg = dmg;
     }
@@ -32,7 +30,6 @@ public class Monstre {
     public int getPv() {
         return pv;
     }
-
     public void setPv(int pv) {
         this.pv = pv;
     }
@@ -40,7 +37,6 @@ public class Monstre {
     public int getVitesse() {
         return vitesse;
     }
-
     public void setVitesse(int vitesse) {
         this.vitesse = vitesse;
     }
