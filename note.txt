@@ -1,4 +1,4 @@
-// Note entre les séances de TP :
+// Note entre les séances de TP1 (Bastien) :
 
 Jsp si j'ai bien configuré le projet en tout cas j'arrive pas a ajouter un bouton sur la fenêtre mais je pense jsuis con
 
@@ -9,3 +9,47 @@ Et desole du coup je me rappelais pas trop de tout les arguments des classes pcq
 J'ai utilisé ce diagramme de classe qui est pas mal je pense : https://image.noelshack.com/fichiers/2014/13/1396183229-diaclasse.png
 
 PS: j'ai oublié de configurer le git ignore ( à télécharger sur internet je crois)
+
+
+// Note TP1 (Antoine) :
+
+J'ai regardé moi ça marche (enfin j'ai reconfiguré mon IDE, si tu y arrive pas on fera un discord stv)
+
+ducoup perso je voyais pas ça comme un jeu case par case mais plutot libre dans les déplacements (diagonale etc)
+
+et j'ai regardé le diagramme de classe, mdrr j'ai rien compris
+
+comme je sais pas ce que cc'est le git ignore on verra plus tard hein ptdrr
+
+voila ce que j'ai fait ducoup :
+
+Vérification, analyse, modification et création du code :
+    |- renommage
+      |- dossier ressources en rsrc
+      |- dossier en view en views
+      |- le fichier qui était dans le dossier views en Test.java (il doit avoir le même nom que le fichier fxml)
+    |- partie fxml et backend fxml
+      |- j'ai codé test.fxml pour travailler un peu le langage
+      |- j'ai fait la partie backend de test.fxml dans Test.java
+        |- incrémentation d'un bouton avec le nombre de clic
+        |- recopiage de la zone de texte en haut dans le label au milieu en temps réel
+    |- partie modele
+      |- classe Monstre.java fonctionne
+      |- classe Munition.java
+        |- Constructeur
+        |- getter/setter
+        |- toString()
+      |- classe Arme.java
+        |- modification de munitions
+        |- getter/setter + ajout de munition dans le Constructeur
+        |- toString()
+      |- classe Personnage.java
+        |- des trucs je me souviens plus ptdrr
+      |- Modification de Item.java
+      |- mise en place de l'héritage entre munition et item (il faut que je le fasses pour les autres classes mais pas le time)
+
+
+
+
+
+
