@@ -1,0 +1,11 @@
+// Note entre les séances de TP :
+
+Jsp si j'ai bien configuré le projet en tout cas j'arrive pas a ajouter un bouton sur la fenêtre mais je pense jsuis con
+
+POur la méthode seDeplacer je pense faudrait faire un switch case selon la touche appuyé 
+J'ai mis une grille puisque j'imagine que la map sera comme ca en mode le perso se déplacer de case en case sur la grille
+Et desole du coup je me rappelais pas trop de tout les arguments des classes pcq j'ai pas trouvé le diagramme de classe
+
+J'ai utilisé ce diagramme de classe qui est pas mal je pense : https://image.noelshack.com/fichiers/2014/13/1396183229-diaclasse.png
+
+PS: j'ai oublié de configurer le git ignore ( à télécharger sur internet je crois)
