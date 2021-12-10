@@ -54,5 +54,22 @@ Vérification, analyse, modification et création du code :
 
 
 
+// Note TP2 (Antoine) :
+
+Le nom des package doit être entièrement en minuscule (je les ai renommé ducoup)
+Le constructeur de la classe doit être en haut (après les variables)
 
 
+
+Ajout de la variable img dans Item.class
+Déplacement de la liste d'arme dans Personnage.class
+Déplacement de la fonction afficherListeArme dans Personnage.class
+plein d'autre petites modif que je me souviens plus
+developpement de manager.class
+
+
+
+
+pour tes autres question je sais pas, il faut que je trouve un tuto javaFX sur youtube parce que je suis complètement perdu pour la grille, et le reste mdrr.
+pour les propriétés, on a pas besoin de faire du binding encore donc on verra quand on en aura besoin.
+Pas grand chose aujourd'hui mais bon je vais m'y mettre sérieusement ce weekend
