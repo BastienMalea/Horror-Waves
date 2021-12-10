@@ -1,4 +1,4 @@
-package modele;
+package modele.item;
 
 public class Arme extends Item {
 
@@ -8,8 +8,8 @@ public class Arme extends Item {
     private int portee;
 
 
-    public Arme(typeArme type, String nom, int dmg, int munitions, int portee) {
-        super(nom);
+    public Arme(typeArme type, String img, String nom, int dmg, int munitions, int portee) {
+        super(nom, img);
         this.type = type;
         this.dmg = dmg;
         this.munitions = munitions;

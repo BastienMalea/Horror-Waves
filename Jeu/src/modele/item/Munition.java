@@ -1,10 +1,10 @@
-package modele;
+package modele.item;
 
-public class Munition extends Item{
+public class Munition extends Item {
     private int quantite;
 
-    public Munition(String nom, int quantite){
-        super(nom);
+    public Munition(String nom, String img, int quantite){
+        super(nom, img);
         this.quantite = quantite;
     }
 
