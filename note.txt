@@ -1,14 +1,17 @@
-// Note entre les séances de TP1 (Bastien) :
+// Note entre les séances de TP2 (Bastien) :
 
-Jsp si j'ai bien configuré le projet en tout cas j'arrive pas a ajouter un bouton sur la fenêtre mais je pense jsuis con
+AU niveau du diagramme de classe, je me demandais est ce qu'on peut pas mettre que Personnage a une listeArme au lieu que ca soit Monstre et Joueur qui en aient?
+Ca allège le code je pense après c'est au  niveau de la méthode RamasserArme qu'il faudra mettre une condition en mode Joueur ou Monstre
 
-POur la méthode seDeplacer je pense faudrait faire un switch case selon la touche appuyé 
-J'ai mis une grille puisque j'imagine que la map sera comme ca en mode le perso se déplacer de case en case sur la grille
-Et desole du coup je me rappelais pas trop de tout les arguments des classes pcq j'ai pas trouvé le diagramme de classe
+J'ai effectué les modifs par rapport a ce qu'on avait fais mercredi 
+Du coup les constructeurs, setters et toString marchent pour les classes MOnstre, Arme, Joueur, Munition et Power
 
-J'ai utilisé ce diagramme de classe qui est pas mal je pense : https://image.noelshack.com/fichiers/2014/13/1396183229-diaclasse.png
+Jsuis un peu perdu sur ou créer les classes genre manager, collisionner, deplaceur et Action
 
-PS: j'ai oublié de configurer le git ignore ( à télécharger sur internet je crois)
+J'ai pas fais le bail de propriété je vais checker ce w.e je pense 
+
+La map est ce qu'on l'implémente dans une classe Jeu et dedans on mettra aussi les décors, les obstacles etc ? 
+
 
 
 // Note TP1 (Antoine) :

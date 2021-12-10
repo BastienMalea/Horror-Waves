@@ -3,22 +3,24 @@ package modele;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Monstre extends Personnage {
-    private int dmg;
-    private TreeMap<Integer, Arme> listeArme;  // Est ce qu'on a besoin de faire une TreeMap étant donné qu'il a une seule arme
+public class Joueur extends Personnage {
 
-    public Monstre(String nom, int dmg, int pv, int vitesse, int posX, int posY) {
+        private TreeMap<Integer, Arme> listeArme;
+    private int munitions;
+
+    public Joueur(String nom, int pv, int posX, int posY, int vitesse, int munitions) {
         super(nom, pv, posX, posY, vitesse);
-        this.dmg = dmg;
+        this.munitions=munitions;
         this.listeArme = new TreeMap<Integer, Arme>();
         listeArme.put(0, new Arme(typeArme.MELEE, "poing", 1, -1, 1));
     }
 
-    public int getDmg() {
-        return dmg;
+    public int getMunitions() {
+        return munitions;
     }
-    public void setDmg(int dmg) {
-        this.dmg = dmg;
+
+    public void setMunitions(int munitions) {
+        this.munitions = munitions;
     }
 
     public String afficherListeArme(TreeMap<Integer, Arme> listeArme){
@@ -32,16 +34,16 @@ public class Monstre extends Personnage {
         return str.toString();
     }
 
-
     @Override
     public String toString() {
-        String la=afficherListeArme(listeArme);
-        return "Monstre{" +
+        String la = afficherListeArme(listeArme);
+        return "Joueur {" +
                 "nom='" + getNom() + '\'' +
-                ", dmg=" + dmg +
                 ", pv=" + getPv() +
-                ", vitesse=" + getVitesse() +
-                ", Arme =" + la +
+                ", x=" + getX() +
+                ", y=" + getY() +
+                ", y=" + getVitesse() +
+                ", Armes =" + la +
                 '}';
     }
 }

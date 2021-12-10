@@ -1,23 +1,19 @@
 package modele;
 
-public class Arme {
-    private String nom;
+public class Arme extends Item {
+
+    private typeArme type;
     private int dmg;
     private int munitions;
     private int portee;
 
-    public Arme(String nom, int dmg, int munitions, int portee) {
-        this.nom = nom;
+
+    public Arme(typeArme type, String nom, int dmg, int munitions, int portee) {
+        super(nom);
+        this.type = type;
         this.dmg = dmg;
         this.munitions = munitions;
         this.portee = portee;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public int getDmg() {
@@ -37,13 +33,19 @@ public class Arme {
         this.portee = portee;
     }
 
+    public typeArme getType() {
+        return type;
+    }
 
-
+    public void setType(typeArme type) {
+        this.type = type;
+    }
 
     @Override
     public String toString(){
         return "Arme{" +
-                "nom='" + nom + "'" +
+                "nom='" + getNom() + "' " +
+                "type='" +getType() +"' " +
                 ", dmg=" + dmg +
                 ", munitions=" + munitions +
                 ", portee=" + portee +
