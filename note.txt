@@ -73,3 +73,42 @@ developpement de manager.class
 pour tes autres question je sais pas, il faut que je trouve un tuto javaFX sur youtube parce que je suis complètement perdu pour la grille, et le reste mdrr.
 pour les propriétés, on a pas besoin de faire du binding encore donc on verra quand on en aura besoin.
 Pas grand chose aujourd'hui mais bon je vais m'y mettre sérieusement ce weekend
+
+
+Note Mr Bouhours: Notre appli elle fera : 
+Un processus il a une zone memoire, une pile d'instructions et un thread principale (tjr 1 par processus)
+Au moment de l'execution : Le systeme Alloue la mémoire / charge les instructions / déroule les instructions pour les interpreter les unes à la suite des autres -> Le thread ( unité d'execution) 
+
+Notre appli : elle aura un thread supplémentaire :
+Tout les thread d'un même processus partagent la même zone mémoire ( génant quand on va vouloir modifier l'interface graphique (solution: modif de l'interface que par le thread principal))
+
+Boucle de jeu def: mettre un jour l'interface un element du jeu toute les x secondes
+
+On peut pas tourner a la vitesse du processus
+Rajouter la notion de temps dans la boucle de jeu:
+while(jeu pas perdu)
+  {
+  sleep(1000); <--1 fps
+  sleep(500); etc..
+  miseAJourDuJeu();
+  }
+
+Cette boucle la faire dans un thread autre que principal :
+Hérité de la classe thread abs avec methode run abs 
+Classe boucleDeJeu : (Avoir des filles qui tournent pas a la même vitesse)
+run(){
+  sleep()
+  beep(); <-- A chaque fois on entend beep il faut faire qqchose 
+  ex : si le beep permet de changer la position du perso, c'est pas bon pcq on modifie le modèle dans le thread non principal
+  solution: ces instructions qui modifient -> execute les dans le thread principale quand tu peux : Platform.runlater(Instruction Runable)
+}
+
+BOucleDeJeu ->implémente l'interface Runable qui a la méthode run mais pas le start :
+Thread b = new Thread(new BoucleDeJeu());
+b.start();
+Le but : identifer ce qui est temporel dans notre jeu pour le mettre dans notre boucle
+
+Platform.runlater(()->{
+  ....
+  ....(liste instruction)
+});
