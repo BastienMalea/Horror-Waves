@@ -59,23 +59,22 @@ Vérification, analyse, modification et création du code :
 Le nom des package doit être entièrement en minuscule (je les ai renommé ducoup)
 Le constructeur de la classe doit être en haut (après les variables)
 
-
-
 Ajout de la variable img dans Item.class
 Déplacement de la liste d'arme dans Personnage.class
 Déplacement de la fonction afficherListeArme dans Personnage.class
 plein d'autre petites modif que je me souviens plus
 developpement de manager.class
 
-
-
-
 pour tes autres question je sais pas, il faut que je trouve un tuto javaFX sur youtube parce que je suis complètement perdu pour la grille, et le reste mdrr.
 pour les propriétés, on a pas besoin de faire du binding encore donc on verra quand on en aura besoin.
 Pas grand chose aujourd'hui mais bon je vais m'y mettre sérieusement ce weekend
 
 
-Note Mr Bouhours: Notre appli elle fera : 
+
+
+// Note TD3 (Mr Bouhours) :
+
+Notre appli elle fera : 
 Un processus il a une zone memoire, une pile d'instructions et un thread principale (tjr 1 par processus)
 Au moment de l'execution : Le systeme Alloue la mémoire / charge les instructions / déroule les instructions pour les interpreter les unes à la suite des autres -> Le thread ( unité d'execution) 
 
@@ -112,3 +111,25 @@ Platform.runlater(()->{
   ....
   ....(liste instruction)
 });
+
+
+
+// Note TP3 (Antoine) :
+
+|-Modifications et ajouts
+ |-J'ai remis le diagramme de classe bien propre
+ |-Personnage.java / Monstre.java / Joueur.java pour que tout corresponde avec les modification du diagramme de classe
+ |-Modification du system d'hitbox dans le diagramme de classe et ajout de la fonction hitbox pour les personnages
+ |-Ajout de l'interface Action
+ |-Ajout de la méthode update munition
+ |-Début de programmation de ramasserArme
+
+
+
+
+
+
+
+
+
+
