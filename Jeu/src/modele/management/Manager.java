@@ -13,8 +13,9 @@ public class Manager {
 
     public Manager(){
         listePersonnage = new TreeMap<Integer, Personnage>();
-        listePersonnage.put(0, new Joueur("joueur", 3, 150, 150, 20, 0));
+        listePersonnage.put(0, new Joueur("joueur", 3, 150, 150, 20, 0, "chemin vers image", 30, 20));
     }
+
 
     public TreeMap<Integer, Personnage> getListePersonnage(){
         return listePersonnage;

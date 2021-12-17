@@ -1,10 +1,10 @@
-package modele;
+package modele.hitbox;
 
-public class HitBox {
+public class Rectangle {
     private int hauteur;
     private int largeur;
 
-    public HitBox(int hauteur, int largeur){
+    public Rectangle(int hauteur, int largeur){
         this.hauteur = hauteur;
         this.largeur = largeur;
     }
@@ -22,6 +22,4 @@ public class HitBox {
     public void setLargeur(int largeur) {
         this.largeur = largeur;
     }
-
-
 }

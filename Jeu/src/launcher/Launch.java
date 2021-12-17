@@ -5,14 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
-import modele.deplaceur.Deplaceur;
-import modele.item.Arme;
-import modele.item.Munition;
-import modele.item.Power;
-import modele.item.typeArme;
+import modele.hitbox.Hitbox;
 import modele.management.Manager;
-import modele.personnage.Joueur;
-import modele.personnage.Monstre;
 
 
 public class Launch extends Application {
@@ -34,6 +28,12 @@ public class Launch extends Application {
 
         Manager manager = new Manager();
         manager.afficherListePersonnage();
+
+        Hitbox h1 = new Hitbox();
+        h1.addRectangle(30, 20);
+        h1.addRectangle(20, 30);
+        h1.addRectangle(25, 25);
+        System.out.println(h1);
     }
 
     @Override

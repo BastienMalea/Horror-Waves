@@ -6,9 +6,8 @@ import modele.item.typeArme;
 public class Monstre extends Personnage {
     private int dmg;
 
-    public Monstre(String nom, int pv, int posX, int posY, int vitesse, int dmg) {
-        super(nom, pv, posX, posY, vitesse, new Arme(typeArme.MELEE, "lien vers image", "poing", 1, -1, 1));
-        this.dmg = dmg;
+    public Monstre(String nom, int pv, int posX, int posY, int vitesse, String image, int Hhitbox, int Lhitbox) {
+        super(nom, pv, posX, posY, vitesse, new Arme(typeArme.MELEE, "lien vers image", "poing", 1, -1, 1), image, Hhitbox, Lhitbox);
     }
 
     public int getDmg() {

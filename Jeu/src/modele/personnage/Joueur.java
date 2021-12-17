@@ -1,13 +1,12 @@
 package modele.personnage;
 
-import modele.item.Arme;
-import modele.item.typeArme;
+import modele.item.*;
 
 public class Joueur extends Personnage {
     private int munitions;
 
-    public Joueur(String nom, int pv, int posX, int posY, int vitesse, int munitions) {
-        super(nom, pv, posX, posY, vitesse, new Arme(typeArme.MELEE, "lien vers image", "poing", 1, -1, 1));
+    public Joueur(String nom, int pv, int posX, int posY, int vitesse, int munitions, String image, int Hhitbox, int Lhitbox) {
+        super(nom, pv, posX, posY, vitesse, new Arme(typeArme.MELEE, "lien vers image", "poing", 1, -1, 1), image, Hhitbox, Lhitbox);
         this.munitions=munitions;
     }
 
@@ -31,5 +30,44 @@ public class Joueur extends Personnage {
                 ", vitesse=" + getVitesse() +
                 ", Armes =" + la +
                 '}';
+    }
+
+
+
+
+    @Override
+    public void ramasser(Item i) {
+
+    }
+
+    @Override
+    public void updateMunition(Munition m) {
+        this.munitions = this.munitions + m.getQuantite();
+    }
+
+    @Override
+    public void ramasserArme(Arme a) {
+        if(getListeArme().size() == 1){
+            this.addArme(getListeArme().size(), a);
+        }
+        else if(getListeArme().size() == 2){
+            this.delArme(getIndiceArme());
+            this.addArme(getIndiceArme(), a);
+        }
+    }
+
+    @Override
+    public void ajouterPower(Power p) {
+
+    }
+
+    @Override
+    public void supprimerPower(Power p) {
+
+    }
+
+    @Override
+    public void changerArmeActive() {
+
     }
 }

@@ -1,6 +1,11 @@
 package modele.personnage;
 
+import modele.hitbox.Hitbox;
+import modele.hitbox.Rectangle;
 import modele.item.Arme;
+import modele.item.Item;
+import modele.item.Munition;
+import modele.item.Power;
 
 
 import java.awt.event.KeyEvent;
@@ -8,34 +13,30 @@ import java.awt.event.KeyListener;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Personnage implements KeyListener {
+public class Personnage implements Action {
     private String nom;
     private int pv;
     private int posX;
     private int posY;
     private int vitesse;
+    private int indiceArme;
+    private String image;
+    private Hitbox hitbox;
     private TreeMap<Integer, Arme> listeArme;
+    private TreeMap<Integer, Power> listePower;
 
-    public Personnage(String nom, int pv, int posX, int posY, int vitesse, Arme arme) {
+    public Personnage(String nom, int pv, int posX, int posY, int vitesse, Arme arme, String image, int Hhitbox, int Lhitbox) {
         this.nom = nom;
         this.pv = pv;
         this.posX = posX;  // A definir au milieu de l'écran j'ai mis une valeur random
         this.posY = posY;  //
         this.vitesse = vitesse;
+        this.indiceArme = 0;
+        this.image = image;
+        this.hitbox.addRectangle(Hhitbox, Lhitbox);
         this.listeArme = new TreeMap<Integer, Arme>();
         listeArme.put(0, arme);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
+        this.listePower = new TreeMap<Integer, Power>();
     }
 
     public void setNom(String nom) {
@@ -73,10 +74,42 @@ public class Personnage implements KeyListener {
         return pv;
     }
 
-    public void setListeArme(TreeMap<Integer, Arme> listeArme) { this.listeArme = listeArme; }
-    public TreeMap<Integer, Arme> getListeArme(){ return listeArme; }
+    public int getIndiceArme() {
+        return indiceArme;
+    }
+    public void setIndiceArme(int indiceArme) {
+        this.indiceArme = indiceArme;
+    }
+
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setListeArme(TreeMap<Integer, Arme> listeArme) {
+        this.listeArme = listeArme;
+    }
+    public TreeMap<Integer, Arme> getListeArme(){
+        return listeArme;
+    }
+
+    public TreeMap<Integer, Power> getListePower() {
+        return listePower;
+    }
+    public void setListePower(TreeMap<Integer, Power> listePower) {
+        this.listePower = listePower;
+    }
 
 
+    public void addArme(int i, Arme a){
+        listeArme.put(i, a);
+    }
+
+    public void delArme(int i){
+        listeArme.remove(i);
+    }
 
     public String afficherListeArme(TreeMap<Integer, Arme> listeArme){
         StringBuilder str = new StringBuilder();
@@ -90,14 +123,40 @@ public class Personnage implements KeyListener {
         return str.toString();
     }
 
+    @Override
+    public void ramasser(Item i) {
 
+    }
 
+    @Override
+    public void updateMunition(Munition m) {
 
+    }
 
+    @Override
+    public void ramasserArme(Arme a) {
 
-    /*private Grille[][] seDeplacer(){
-    }*/
+    }
 
+    @Override
+    public void ajouterPower(Power p) {
+
+    }
+
+    @Override
+    public void supprimerPower(Power p) {
+
+    }
+
+    @Override
+    public void changerArmeActive() {
+
+    }
+
+    @Override
+    public void attaquer(Personnage p) {
+
+    }
 
 
 }

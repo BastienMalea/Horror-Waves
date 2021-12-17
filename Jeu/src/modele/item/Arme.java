@@ -36,7 +36,6 @@ public class Arme extends Item {
     public typeArme getType() {
         return type;
     }
-
     public void setType(typeArme type) {
         this.type = type;
     }
