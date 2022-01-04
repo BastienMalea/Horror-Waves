@@ -33,6 +33,7 @@ public class Personnage implements Action {
         this.vitesse = vitesse;
         this.indiceArme = 0;
         this.image = image;
+        this.hitbox = new Hitbox();
         this.hitbox.addRectangle(Hhitbox, Lhitbox);
         this.listeArme = new TreeMap<Integer, Arme>();
         listeArme.put(0, arme);
