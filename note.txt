@@ -126,10 +126,9 @@ Platform.runlater(()->{
 
 
 
+TD 05/01 : 
+
+Site sur le multi threading : https://devstory.net/10269/java-multithreading <-- thread qui implemente l'interface runable 
 
 
-
-
-
-
-
+Diagramme de classe <-- Ajouter les classes de vues du code behind pour voir les connections avec notre modèle
