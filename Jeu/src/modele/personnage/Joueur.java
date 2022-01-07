@@ -18,7 +18,6 @@ public class Joueur extends Personnage {
     }
 
 
-
     @Override
     public String toString() {
         String la = super.afficherListeArme(super.getListeArme());
@@ -31,8 +30,6 @@ public class Joueur extends Personnage {
                 ", Armes =" + la +
                 '}';
     }
-
-
 
 
     @Override
@@ -66,8 +63,14 @@ public class Joueur extends Personnage {
 
     }
 
-    @Override
+    @Override //Est ce qu'on fait 2 armes max pour le joueur ?
     public void changerArmeActive() {
-
+        if(getIndiceArme()==0){
+            setIndiceArme(1);
+        }
+        else if(getIndiceArme()==1)
+        {
+            setIndiceArme(0);
+        }
     }
 }

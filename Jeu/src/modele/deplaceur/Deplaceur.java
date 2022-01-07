@@ -8,7 +8,13 @@ public class Deplaceur {
 
     public void seDeplacer(int x, int y, Personnage p)
     {
-        p.setX(x);
-        p.setY(y);
+        //Demande au collisionner si on peut se deplacer aux coordonnées passées en param
+        if(isCollision(x, y)){
+            p.setX(x);
+            p.setY(y);
+        }
+        else
+
+
     }
 }

@@ -24,8 +24,6 @@ public class Manager {
         this.listePersonnage = listePersonnage;
     }
 
-
-
     public void afficherListePersonnage(){
         for(Map.Entry<Integer, Personnage> entry : listePersonnage.entrySet()){
             System.out.println(entry.getKey() + " : " + entry.getValue());
