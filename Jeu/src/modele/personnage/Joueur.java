@@ -63,7 +63,7 @@ public class Joueur extends Personnage {
 
     }
 
-    @Override //Est ce qu'on fait 2 armes max pour le joueur ?
+    @Override //Est ce qu'on fait 2 armes max pour le joueur ? oui(antoine)
     public void changerArmeActive() {
         if(getIndiceArme()==0){
             setIndiceArme(1);
