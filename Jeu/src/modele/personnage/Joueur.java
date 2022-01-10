@@ -24,7 +24,7 @@ public class Joueur extends Personnage {
         return "Joueur {" +
                 "nom='" + getNom() + '\'' +
                 ", pv=" + getPv() +
-                ", x=" + getX() +
+                ", x=" + getPosX() +
                 ", y=" + getY() +
                 ", vitesse=" + getVitesse() +
                 ", Armes =" + la +

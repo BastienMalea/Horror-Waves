@@ -1,5 +1,7 @@
 package modele.personnage;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import modele.hitbox.Hitbox;
 import modele.hitbox.Rectangle;
 import modele.item.Arme;
@@ -14,9 +16,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Personnage implements Action {
+
+    private final IntegerProperty posX = new SimpleIntegerProperty();
+        public int getPosX() { return posX.get(); }
+        public void setPosX(int posX) { this.posX.set(posX); }
+        public IntegerProperty posXProperty(){ return posX; }
+
     private String nom;
     private int pv;
-    private int posX;
     private int posY;
     private int vitesse;
     private int indiceArme;
@@ -28,7 +35,7 @@ public class Personnage implements Action {
     public Personnage(String nom, int pv, int posX, int posY, int vitesse, Arme arme, String image, int Hhitbox, int Lhitbox) {
         this.nom = nom;
         this.pv = pv;
-        this.posX = posX;  // A definir au milieu de l'écran j'ai mis une valeur random
+        this.setPosX(posX);
         this.posY = posY;  //
         this.vitesse = vitesse;
         this.indiceArme = 0;
@@ -45,13 +52,6 @@ public class Personnage implements Action {
     }
     public String getNom() {
         return nom;
-    }
-
-    public int getX() {
-        return posX;
-    }
-    public void setX(int x) {
-        this.posX = x;
     }
 
     public int getY() {
