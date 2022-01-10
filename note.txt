@@ -126,10 +126,18 @@ Platform.runlater(()->{
 
 
 
+TD 05/01 : 
+
+Site sur le multi threading : https://devstory.net/10269/java-multithreading <-- thread qui implemente l'interface runable 
 
 
+Diagramme de classe <-- Ajouter les classes de vues du code behind pour voir les connections avec notre modèle
 
+//Note TP4(Bastien) : 
 
+Au niveau des personnages : Je me rappelle plus si on avait dit que le Monstre pouvait faire toute les action de l'interface Action 
+pcq du coup selon le modèle il va être obligé de prendre toute les action qui sont dans Personnage
 
+Conception: Jsp si du coup faut rajouter des Observers/Observable j'ai pas tout compris dans la doc dessus. 
 
-
+Debut de la programmation changerArme

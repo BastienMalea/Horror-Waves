@@ -1,4 +1,4 @@
-package modele;
+package modele.monde;
 
 public class Grille {
     private int colonnes;
