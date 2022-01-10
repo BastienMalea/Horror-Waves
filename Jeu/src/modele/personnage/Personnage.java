@@ -22,9 +22,13 @@ public class Personnage implements Action {
         public void setPosX(int posX) { this.posX.set(posX); }
         public IntegerProperty posXProperty(){ return posX; }
 
+    private final IntegerProperty posY = new SimpleIntegerProperty();
+        public int getPosY() { return posY.get(); }
+        public void setPosY(int posY) { this.posY.set(posY); }
+        public IntegerProperty posYProperty(){ return posY; }
+
     private String nom;
     private int pv;
-    private int posY;
     private int vitesse;
     private int indiceArme;
     private String image;
@@ -36,7 +40,7 @@ public class Personnage implements Action {
         this.nom = nom;
         this.pv = pv;
         this.setPosX(posX);
-        this.posY = posY;  //
+        this.setPosY(posY);
         this.vitesse = vitesse;
         this.indiceArme = 0;
         this.image = image;
@@ -54,12 +58,6 @@ public class Personnage implements Action {
         return nom;
     }
 
-    public int getY() {
-        return posY;
-    }
-    public void setY(int y) {
-        this.posY = y;
-    }
 
     public int getVitesse() {
         return vitesse;

@@ -25,7 +25,7 @@ public class Joueur extends Personnage {
                 "nom='" + getNom() + '\'' +
                 ", pv=" + getPv() +
                 ", x=" + getPosX() +
-                ", y=" + getY() +
+                ", y=" + getPosY() +
                 ", vitesse=" + getVitesse() +
                 ", Armes =" + la +
                 '}';

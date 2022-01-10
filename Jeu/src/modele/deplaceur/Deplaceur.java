@@ -13,6 +13,7 @@ import java.util.Observer;
 
 public class Deplaceur implements Observer {
     Scene scene;
+    Personnage joueur;
     ArrayList<Personnage> listePersonnage;
     ArrayList<String> listeMouvement = new ArrayList<String>();
 
@@ -20,6 +21,7 @@ public class Deplaceur implements Observer {
     public Deplaceur(Scene scene, ArrayList<Personnage> listePersonnage){
         this.scene = scene;
         this.listePersonnage = listePersonnage;
+        this.joueur = listePersonnage.get(0);
     }
 
     public void seDeplacer(Personnage p)
@@ -48,16 +50,20 @@ public class Deplaceur implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if(listeMouvement.contains("U")){
-            System.out.println("se déplacer en haut");
+            System.out.println("y = " + joueur.getPosY());
+            joueur.setPosY(joueur.getPosY() - 1);
         }
         if(listeMouvement.contains("D")){
-            System.out.println("se déplacer en bas");
+            System.out.println("y = " + joueur.getPosY());
+            joueur.setPosY(joueur.getPosY() + 1);
         }
         if(listeMouvement.contains("L")){
-            System.out.println("se déplacer à gauche");
+            System.out.println("x = " + joueur.getPosX());
+            joueur.setPosX(joueur.getPosX() - 1);
         }
         if(listeMouvement.contains("R")){
-            System.out.println("se déplacer à droite");
+            System.out.println("x = " + joueur.getPosX());
+            joueur.setPosX(joueur.getPosX() + 1);
         }
         listeMouvement.clear();
     }
