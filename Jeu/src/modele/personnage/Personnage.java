@@ -2,6 +2,7 @@ package modele.personnage;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
 import modele.hitbox.Hitbox;
 import modele.hitbox.Rectangle;
 import modele.item.Arme;

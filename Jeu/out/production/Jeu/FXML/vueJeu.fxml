@@ -12,6 +12,7 @@
             fx:controller="views.VueJeu"
             prefHeight="400.0" prefWidth="600.0">
 
-    <Rectangle fx:id="rectangle" height="20" width="20"></Rectangle>
+    <Rectangle fx:id="rectangle" height="20" width="20" ></Rectangle>
+
 
 </AnchorPane>

@@ -1,5 +1,6 @@
 package modele.deplaceur;
 
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Deplaceur implements Observer {
+public class Deplaceur {
     Scene scene;
     Personnage joueur;
     ArrayList<Personnage> listePersonnage;
@@ -24,31 +25,39 @@ public class Deplaceur implements Observer {
         this.joueur = listePersonnage.get(0);
     }
 
-    public void seDeplacer(Personnage p)
+    public void detectionTouche()
     {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 switch(event.getCode()){
                     case UP:
-                        listeMouvement.add("U");
+                        if(!listeMouvement.contains("U")) {
+                            listeMouvement.add("U");
+                        }
                         break;
                     case DOWN:
-                        listeMouvement.add("D");
+                        if(!listeMouvement.contains("D")) {
+                            listeMouvement.add("D");
+                        }
                         break;
                     case LEFT:
-                        listeMouvement.add("L");
+                        if(!listeMouvement.contains("L")) {
+                            listeMouvement.add("L");
+                        }
                         break;
                     case RIGHT:
-                        listeMouvement.add("R");
+                        if(!listeMouvement.contains("R")) {
+                            listeMouvement.add("R");
+                        }
                         break;
                 }
             }
         });
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
+
+    public void updatePositionJoueur() {
         if(listeMouvement.contains("U")){
             System.out.println("y = " + joueur.getPosY());
             joueur.setPosY(joueur.getPosY() - 1);
@@ -66,5 +75,6 @@ public class Deplaceur implements Observer {
             joueur.setPosX(joueur.getPosX() + 1);
         }
         listeMouvement.clear();
+
     }
 }
