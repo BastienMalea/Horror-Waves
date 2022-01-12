@@ -22,13 +22,15 @@ public class VueJeu{
 
 
     Manager manager = Launch.getManager();
-    Personnage joueur = manager.getJoueur();
-
+    //Personnage joueur = manager.getJoueur():
 
     @FXML
     public void initialize(){
-        rectangle.xProperty().bindBidirectional(joueur.posXProperty());
-        rectangle.yProperty().bindBidirectional(joueur.posYProperty());
+        rectangle.xProperty().bindBidirectional(manager.getJoueur().posXProperty());
+        rectangle.yProperty().bindBidirectional(manager.getJoueur().posYProperty());
+
+        System.out.println(manager.getJoueur().toString());
     }
+
 
 }

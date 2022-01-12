@@ -1,0 +1,8 @@
+Dans le scene builder, il a fat un Panel avec un rectangle
+
+Dans le fxml :
+<Pane
+<children
+<Rectangle
+
+BOucleur / Observer et Deplaceur censés être une interface

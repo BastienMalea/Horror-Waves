@@ -22,7 +22,7 @@ public class Manager {
 
     public Manager(){
         listePersonnage = new ArrayList<Personnage>();
-        listePersonnage.add(new Joueur("joueur", 3, 290, 190, 20, 0, "chemin vers image", 30, 20));
+        listePersonnage.add(new Joueur("joueur", 3, 10, 190, 20, 0, "chemin vers image", 30, 20));
     }
 
     //getter setter listePersonnage
