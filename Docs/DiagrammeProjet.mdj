@@ -5221,9 +5221,9 @@
 										"$ref": "AAAAAAF+XwHoVKlhVzw="
 									},
 									"font": "Arial;13;0",
-									"left": 603,
+									"left": 602,
 									"top": 588,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -6511,7 +6511,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF+WSB2eEGfo1I="
 									},
-									"name": "KeyCode code"
+									"name": "KeyCode code",
+									"type": ""
 								}
 							]
 						},
@@ -6632,7 +6633,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF+WSFf90KoXjQ="
 									},
-									"name": "x double"
+									"name": "x double",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -6640,7 +6642,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF+WSFf90KoXjQ="
 									},
-									"name": "y double"
+									"name": "y double",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -6657,7 +6660,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF+WSFf90KoXjQ="
 									},
-									"name": "p Personnage"
+									"name": "p Personnage",
+									"type": ""
 								}
 							]
 						}

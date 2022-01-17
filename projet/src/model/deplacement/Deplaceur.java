@@ -2,7 +2,6 @@ package model.deplacement;
 
 import javafx.scene.input.KeyCode;
 import model.boucle.Observeur;
-import model.entite.Personnage;
 
 public abstract class Deplaceur extends Observeur {
 

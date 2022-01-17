@@ -11,6 +11,7 @@ public abstract class Boucleur implements Runnable {
 
     private List<Observeur> observateur = new ArrayList<>();
 
+
     public void ajouterObservateur(Observeur o){
         observateur.add(o);
     }
