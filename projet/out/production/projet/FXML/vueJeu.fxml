@@ -15,5 +15,6 @@
 
     <Line fx:id="viseur" strokeWidth="3" stroke="red"/>
     <Rectangle fx:id="joueurVue"></Rectangle>
+    <Rectangle fx:id="monstreVue"></Rectangle>
     <Label fx:id="timer"/>
 </AnchorPane>

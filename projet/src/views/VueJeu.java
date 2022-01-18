@@ -21,6 +21,9 @@ public class VueJeu extends AnchorPane {
     private Rectangle joueurVue;
 
     @FXML
+    private Rectangle monstreVue;
+
+    @FXML
     private Label timer;
 
     @FXML
@@ -33,6 +36,11 @@ public class VueJeu extends AnchorPane {
     public void initialize(){
         manager = new Manager();
         StringConverter<Number> converter = new NumberStringConverter();
+
+        monstreVue.xProperty().bind(manager.getMonstre().posXProperty());
+        monstreVue.xProperty().bind(manager.getMonstre().posYProperty());
+        monstreVue.heightProperty().bind(manager.getMonstre().hauteurProperty());
+        monstreVue.widthProperty().bind(manager.getMonstre().largeurProperty());
 
         joueurVue.xProperty().bind(manager.getJoueur().posXProperty());
         joueurVue.yProperty().bind(manager.getJoueur().posYProperty());

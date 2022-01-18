@@ -17,8 +17,6 @@ public class DeplaceurClassique extends Deplaceur{
         this.joueur = joueur;
     }
 
-
-
     public void ajouterTouche(KeyCode code){
         if(!listeTouche.contains(code))
             listeTouche.add(code);
