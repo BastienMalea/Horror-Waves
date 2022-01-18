@@ -17,8 +17,8 @@ public class Launch extends Application {
         Scene scene = new Scene(racine);
 
         primaryStage.setResizable(false);
-        primaryStage.setHeight(400);
-        primaryStage.setWidth(600);
+        primaryStage.setHeight(800);
+        primaryStage.setWidth(1200);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

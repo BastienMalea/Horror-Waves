@@ -12,7 +12,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="views.VueJeu">
 
-    <Line fx:id="viseur" strokeWidth="3" stroke="red"/>
+    <Line fx:id="viseur" strokeWidth="2" stroke="red"/>
     <Rectangle fx:id="joueurVue"></Rectangle>
     <Rectangle fx:id="monstreVue"></Rectangle>
     <Label fx:id="timer"/>

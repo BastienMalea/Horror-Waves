@@ -18,12 +18,12 @@ public class Calculateur {
             return xMouse;
         }
         if(xJoueur <= xMouse){
-            this.x = 750;
-            return 750;
+            this.x = 1500;
+            return 1500;
         }
         if(xJoueur >= xMouse){
-            this.x = -750;
-            return -750;
+            this.x = -1500;
+            return -1500;
         }
 
         this.x = xMouse;

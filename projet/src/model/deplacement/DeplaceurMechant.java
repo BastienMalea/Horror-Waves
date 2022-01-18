@@ -10,7 +10,7 @@ public class DeplaceurMechant extends Deplaceur {
 
     private Manager manager;
     private Personnage monstre;
-    private final int STEP = 2;
+    private double STEP = 2;
 
     public DeplaceurMechant(Collisionneur collisionneur, Personnage monstre, Manager manager)
     {
