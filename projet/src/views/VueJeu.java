@@ -43,7 +43,7 @@ public class VueJeu extends AnchorPane {
         joueurVue.widthProperty().bind(manager.getJoueur().largeurProperty());
 
         monstreVue.xProperty().bind(manager.getMonstre().posXProperty());
-        monstreVue.xProperty().bind(manager.getMonstre().posYProperty());
+        monstreVue.yProperty().bind(manager.getMonstre().posYProperty());
         monstreVue.heightProperty().bind(manager.getMonstre().hauteurProperty());
         monstreVue.widthProperty().bind(manager.getMonstre().largeurProperty());
 
