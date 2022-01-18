@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeplaceurClassique extends Deplaceur{
-
     private final int STEP = 5;
     private List<KeyCode> listeTouche = new ArrayList<KeyCode>();
     private Personnage joueur;
@@ -16,6 +15,7 @@ public class DeplaceurClassique extends Deplaceur{
         super(collisionneur);
         this.joueur = joueur;
     }
+
 
     public void ajouterTouche(KeyCode code){
         if(!listeTouche.contains(code))

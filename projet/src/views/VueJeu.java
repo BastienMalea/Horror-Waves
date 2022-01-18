@@ -37,22 +37,22 @@ public class VueJeu extends AnchorPane {
         manager = new Manager();
         StringConverter<Number> converter = new NumberStringConverter();
 
-        monstreVue.xProperty().bind(manager.getMonstre().posXProperty());
-        monstreVue.xProperty().bind(manager.getMonstre().posYProperty());
-        monstreVue.heightProperty().bind(manager.getMonstre().hauteurProperty());
-        monstreVue.widthProperty().bind(manager.getMonstre().largeurProperty());
-
         joueurVue.xProperty().bind(manager.getJoueur().posXProperty());
         joueurVue.yProperty().bind(manager.getJoueur().posYProperty());
         joueurVue.heightProperty().bind(manager.getJoueur().hauteurProperty());
         joueurVue.widthProperty().bind(manager.getJoueur().largeurProperty());
 
+        monstreVue.xProperty().bind(manager.getMonstre().posXProperty());
+        monstreVue.xProperty().bind(manager.getMonstre().posYProperty());
+        monstreVue.heightProperty().bind(manager.getMonstre().hauteurProperty());
+        monstreVue.widthProperty().bind(manager.getMonstre().largeurProperty());
+
         Bindings.bindBidirectional(timer.textProperty(), manager.getTimer().tempsProperty(), converter);
 
         viseur.startXProperty().bind(manager.getJoueur().posCentreXProperty());
         viseur.startYProperty().bind(manager.getJoueur().posCentreYProperty());
-        viseur.endXProperty().bind(manager.getMouse().posMouseXProperty());
-        viseur.endYProperty().bind(manager.getMouse().posMouseYProperty());
+        viseur.endXProperty().bind(manager.getLigne().posEndLineXProperty());
+        viseur.endYProperty().bind(manager.getLigne().posEndLineYProperty());
 
         manager.getCollisionneur().hauteurFenetreProperty().bind(Launch.getPrimaryStage().heightProperty());
         manager.getCollisionneur().largeurFenetreProperty().bind(Launch.getPrimaryStage().widthProperty());

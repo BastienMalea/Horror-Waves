@@ -37,9 +37,9 @@ public abstract class Personnage {
 
 
     public Personnage(double x, double y, double hauteur, double largeur){
-        setPosX(x);
-        setPosY(y);
         setHauteur(hauteur);
         setLargeur(largeur);
+        setPosX(x);
+        setPosY(y);
     }
 }

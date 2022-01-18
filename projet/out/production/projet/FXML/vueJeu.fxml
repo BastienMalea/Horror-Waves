@@ -10,8 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.VueJeu"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="views.VueJeu">
 
     <Line fx:id="viseur" strokeWidth="3" stroke="red"/>
     <Rectangle fx:id="joueurVue"></Rectangle>

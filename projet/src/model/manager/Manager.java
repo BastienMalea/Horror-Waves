@@ -4,6 +4,10 @@ import javafx.beans.property.ListProperty;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.transform.Scale;
+import model.affichage.Affichage;
+import model.affichage.AffichageViseur;
+import model.boucle.BoucleAffichage;
 import model.boucle.BoucleDeplacement;
 import model.boucle.BoucleTemps;
 import model.boucle.Boucleur;
@@ -26,29 +30,35 @@ public class Manager {
     private Personnage monstre;
     //private final ListProperty<Monstre> monstres;
     private Collisionneur collisionneur;
-    private Deplaceur deplaceur;
+    private Deplaceur deplaceurJoueur;
+    private DeplaceurMechant deplaceurMechant;
     private Mouse mouse;
     private Ligne ligne;
     private Calculateur calculateur;
+    private Affichage affichageViseur;
 
 
     private Boucleur boucleTemps;
     private Boucleur boucleDeplacement;
-    private DeplaceurMechant deplaceurMechant;
+    private Boucleur boucleAffichage;
 
     private Timer timer;
 
     public Manager(){
         joueur = new Joueur(250, 200, 20, 20);
         monstre = new Monstre(15,15,10,10);
+        ligne = new Ligne(250, 200);
+        mouse = new Mouse();
+        timer = new Timer(0, 0);
+
         collisionneur = new CollisionneurClassique();
-        deplaceur = new DeplaceurClassique(collisionneur, joueur);
+        deplaceurJoueur = new DeplaceurClassique(collisionneur, joueur);
         deplaceurMechant = new DeplaceurMechant(collisionneur, monstre, this);
 
-        mouse = new Mouse();
+        calculateur = new Calculateur();
+        affichageViseur = new AffichageViseur(calculateur, ligne, joueur, mouse);
 
 
-        timer = new Timer(0, 0);
 
 
         boucleTemps = new BoucleTemps();
@@ -56,9 +66,13 @@ public class Manager {
         new Thread(boucleTemps).start();
 
         boucleDeplacement = new BoucleDeplacement();
-        boucleDeplacement.ajouterObservateur(deplaceur);
+        boucleDeplacement.ajouterObservateur(deplaceurJoueur);
         boucleDeplacement.ajouterObservateur(deplaceurMechant);
         new Thread(boucleDeplacement).start();
+
+        boucleAffichage = new BoucleAffichage();
+        boucleAffichage.ajouterObservateur(affichageViseur);
+        new Thread(boucleAffichage).start();
 
     }
 
@@ -70,7 +84,7 @@ public class Manager {
         return collisionneur;
     }
 
-    public DeplaceurClassique getDeplaceur(){return (DeplaceurClassique) deplaceur;}
+    public DeplaceurClassique getDeplaceur(){return (DeplaceurClassique) deplaceurJoueur;}
 
     public Mouse getMouse(){
         return mouse;
@@ -81,5 +95,13 @@ public class Manager {
     }
 
     public Personnage getMonstre(){return monstre;}
+
+    public Ligne getLigne(){
+        return ligne;
+    }
+
+    public Calculateur getCalculateur(){
+        return calculateur;
+    }
 
 }

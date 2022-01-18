@@ -26,6 +26,7 @@ public class Timer extends Observeur {
     public Timer(double x, double y){
         setPosX(x);
         setPosY(y);
+        setTemps(0);
     }
 
     @Override

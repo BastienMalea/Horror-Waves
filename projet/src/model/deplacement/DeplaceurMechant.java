@@ -9,13 +9,13 @@ import model.manager.Manager;
 public class DeplaceurMechant extends Deplaceur {
 
     private Manager manager;
-    private Monstre monstre;
+    private Personnage monstre;
     private final int STEP = 2;
 
     public DeplaceurMechant(Collisionneur collisionneur, Personnage monstre, Manager manager)
     {
         super(collisionneur);
-        this.monstre= (Monstre) monstre;
+        this.monstre= monstre;
         this.manager=manager;
     }
 

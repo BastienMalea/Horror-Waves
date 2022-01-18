@@ -14,9 +14,12 @@ public class Ligne {
     public void setPosEndLineY(double posEndLineY) { this.posEndLineY.set(posEndLineY); }
     public SimpleDoubleProperty posEndLineYProperty() { return posEndLineY; }
 
-    public Ligne(){}
+    public Ligne(double xEnd, double yEnd){
+        setPosEndLineX(xEnd);
+        setPosEndLineY(yEnd);
+    }
 
-    public void updateEndLine(double x, double y){
+    public void updatePosEndLine(double x, double y){
         setPosEndLineX(x);
         setPosEndLineY(y);
     }
