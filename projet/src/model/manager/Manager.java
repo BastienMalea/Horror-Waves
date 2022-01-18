@@ -10,14 +10,17 @@ import model.deplacement.Collisionneur;
 import model.deplacement.CollisionneurClassique;
 import model.deplacement.Deplaceur;
 import model.deplacement.DeplaceurClassique;
-import model.entite.Joueur;
-import model.entite.Personnage;
-import model.entite.Timer;
+import model.entite.*;
 
 public class Manager {
     private Personnage joueur;
     private Collisionneur collisionneur;
     private Deplaceur deplaceur;
+    private Mouse mouse;
+    private Ligne ligne;
+    private Calculateur calculateur;
+
+
     private Boucleur boucleTemps;
     private Boucleur boucleDeplacement;
 
@@ -27,6 +30,7 @@ public class Manager {
         joueur = new Joueur(100, 200, 20, 20);
         collisionneur = new CollisionneurClassique();
         deplaceur = new DeplaceurClassique(collisionneur, joueur);
+        mouse = new Mouse();
         timer = new Timer(0, 0);
 
 
@@ -50,6 +54,10 @@ public class Manager {
 
     public Deplaceur getDeplaceur(){
         return deplaceur;
+    }
+
+    public Mouse getMouse(){
+        return mouse;
     }
 
     public Timer getTimer(){

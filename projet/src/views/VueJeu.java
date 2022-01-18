@@ -5,7 +5,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
@@ -20,6 +22,9 @@ public class VueJeu extends AnchorPane {
 
     @FXML
     private Label timer;
+
+    @FXML
+    private Line viseur;
 
 
     private Manager manager;
@@ -36,6 +41,10 @@ public class VueJeu extends AnchorPane {
 
         Bindings.bindBidirectional(timer.textProperty(), manager.getTimer().tempsProperty(), converter);
 
+        viseur.startXProperty().bind(manager.getJoueur().posCentreXProperty());
+        viseur.startYProperty().bind(manager.getJoueur().posCentreYProperty());
+        viseur.endXProperty().bind(manager.getMouse().posMouseXProperty());
+        viseur.endYProperty().bind(manager.getMouse().posMouseYProperty());
 
         manager.getCollisionneur().hauteurFenetreProperty().bind(Launch.getPrimaryStage().heightProperty());
         manager.getCollisionneur().largeurFenetreProperty().bind(Launch.getPrimaryStage().widthProperty());
@@ -54,6 +63,14 @@ public class VueJeu extends AnchorPane {
                 manager.getDeplaceur().supprimerTouche(event.getCode());
             }
         });
+
+        Launch.getPrimaryStage().addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                manager.getMouse().updateCoordonnees(event.getSceneX(), event.getSceneY());
+            }
+        });
+
 
     }
 
