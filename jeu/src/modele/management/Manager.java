@@ -19,16 +19,12 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 public class Manager {
     private ArrayList<Personnage> listePersonnage;
-    private SimpleListProperty<Personnage> listPersonnage;
-    private ObjectProperty<Personnage> test; // YA un autre type j'ai pas eu le temps
+    private SimpleListProperty<Personnage> listPersonnage = new SimpleListProperty<Personnage>();
 
-
-    public Manager(){
+    public Manager() {
         listePersonnage = new ArrayList<Personnage>();
-        test =  new ObjectListProperty<Personnage>() {
-
-        listePersonnage.add(new Joueur("joueur", 3, 10, 190, 20, 0, "chemin vers image", 30, 20));
         listPersonnage.add(new Joueur("joueur", 3, 10, 190, 20, 0, "chemin vers image", 30, 20));
+        listePersonnage.add(new Joueur("joueur", 3, 10, 190, 20, 0, "chemin vers image", 30, 20));
     }
 
     public SimpleListProperty<Personnage> getListPersonnage(){

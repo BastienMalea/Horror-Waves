@@ -12,5 +12,6 @@
             fx:controller="views.VueJeu"
             prefHeight="400.0" prefWidth="600.0">
     <Rectangle fx:id="joueurVue"></Rectangle>
+    <Rectangle fx:id="monstreVue"></Rectangle>
     <Label fx:id="timer"/>
 </AnchorPane>

@@ -11,7 +11,7 @@ public abstract class Deplaceur extends Observeur {
         this.collisionneur = collisionneur;
     }
 
-    public abstract void ajouterTouche(KeyCode code);
-    public abstract void supprimerTouche(KeyCode code);
+    //public abstract void ajouterTouche(KeyCode code);
+    //public abstract void supprimerTouche(KeyCode code);
 
 }
