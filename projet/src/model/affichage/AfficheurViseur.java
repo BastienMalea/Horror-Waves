@@ -5,12 +5,12 @@ import model.entite.Mouse;
 import model.entite.Personnage;
 import model.manager.Calculateur;
 
-public class AffichageViseur extends Affichage{
+public class AfficheurViseur extends Afficheur {
     private Ligne ligne;
     private Personnage joueur;
     private Mouse mouse;
 
-    public AffichageViseur(Calculateur calculateur, Ligne ligne, Personnage joueur, Mouse mouse){
+    public AfficheurViseur(Calculateur calculateur, Ligne ligne, Personnage joueur, Mouse mouse){
         super(calculateur);
         this.ligne = ligne;
         this.joueur = joueur;

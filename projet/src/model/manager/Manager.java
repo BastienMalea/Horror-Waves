@@ -1,12 +1,12 @@
 package model.manager;
 
 import javafx.beans.property.ListProperty;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.transform.Scale;
-import model.affichage.Affichage;
-import model.affichage.AffichageViseur;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.shape.Rectangle;
+import model.affichage.Afficheur;
+import model.affichage.AfficheurViseur;
 import model.boucle.BoucleAffichage;
 import model.boucle.BoucleDeplacement;
 import model.boucle.BoucleTemps;
@@ -23,28 +23,55 @@ import model.entite.Joueur;
 import model.entite.Monstre;
 import model.entite.Personnage;
 import model.entite.Timer;
+import views.VueJeu;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Manager {
+    //objet représenté sur la scene
     private Personnage joueur;
     private Personnage monstre;
-    //private final ListProperty<Monstre> monstres;
-    private Collisionneur collisionneur;
-    private Deplaceur deplaceurJoueur;
-    private DeplaceurMechant deplaceurMechant;
+    private Timer timer;
     private Mouse mouse;
     private Ligne ligne;
+
+    //calcul les collisions
+    private Collisionneur collisionneur;
+    //calcul les déplacements
+    private Deplaceur deplaceurJoueur;
+    private Deplaceur deplaceurMechant;
+    //calcul la droite pour le viseur
     private Calculateur calculateur;
-    private Affichage affichageViseur;
+    //raffraichit l'affichage du viseur
+    private Afficheur afficheurViseur;
 
-
+    //boucle pour le chrono
     private Boucleur boucleTemps;
+    //boucle pour les déplacements
     private Boucleur boucleDeplacement;
+    //boucle pour l'affichage
     private Boucleur boucleAffichage;
 
-    private Timer timer;
+    //liste de rectangle monstres
+    private List<Rectangle> listeRectangle;
+    //listeObservable contenant les monstres
+    private ObservableList<Personnage> oListeMonstre;
+    //propriété encapsulant la liste observable contenant les monstres
+    private final ListProperty<Personnage> listeMonstre = new SimpleListProperty<Personnage>();
+        public List<Personnage> getListeMonstre(){ return listeMonstre.get(); }
+        public void setListeMonstre(ObservableList<Personnage> listeMonstre){ this.listeMonstre.set(listeMonstre); }
+        public ListProperty<Personnage> listeMonstreProperty(){ return listeMonstre; }
 
-    public Manager(){
+    //controlleur de la vue de jeu
+    private VueJeu vueJeu;
+
+
+
+    public Manager(VueJeu vueJeu){
+        this.vueJeu = vueJeu;
+
         joueur = new Joueur(250, 200, 20, 20);
         monstre = new Monstre(15,15,10,10);
         ligne = new Ligne(250, 200);
@@ -53,12 +80,19 @@ public class Manager {
 
         collisionneur = new CollisionneurClassique();
         deplaceurJoueur = new DeplaceurClassique(collisionneur, joueur);
-        deplaceurMechant = new DeplaceurMechant(collisionneur, monstre, this);
+        deplaceurMechant = new DeplaceurMechant(collisionneur, this);
 
         calculateur = new Calculateur();
-        affichageViseur = new AffichageViseur(calculateur, ligne, joueur, mouse);
+        afficheurViseur = new AfficheurViseur(calculateur, ligne, joueur, mouse);
 
+        oListeMonstre = FXCollections.observableArrayList();
+        listeRectangle = new ArrayList<Rectangle>();
 
+        creerMonstre(10, 10);
+        creerMonstre(100, 100);
+        creerMonstre(200, 200);
+        creerMonstre(300, 300);
+        creerMonstre(400, 400);
 
 
         boucleTemps = new BoucleTemps();
@@ -71,9 +105,21 @@ public class Manager {
         new Thread(boucleDeplacement).start();
 
         boucleAffichage = new BoucleAffichage();
-        boucleAffichage.ajouterObservateur(affichageViseur);
+        boucleAffichage.ajouterObservateur(afficheurViseur);
         new Thread(boucleAffichage).start();
 
+    }
+
+    public void creerMonstre(double x, double y){
+        oListeMonstre.add(new Monstre(x,y,10,10));
+        setListeMonstre(oListeMonstre);
+        listeRectangle.add(new Rectangle());
+        listeRectangle.get(listeRectangle.size()-1).setId(String.valueOf(listeRectangle.size()-1));
+        listeRectangle.get(listeRectangle.size()-1).xProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).posXProperty());
+        listeRectangle.get(listeRectangle.size()-1).yProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).posYProperty());
+        listeRectangle.get(listeRectangle.size()-1).heightProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).hauteurProperty());
+        listeRectangle.get(listeRectangle.size()-1).widthProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).largeurProperty());
+        vueJeu.getListeMonstreVue().getChildren().add(listeRectangle.get(listeRectangle.size()-1));
     }
 
     public Personnage getJoueur(){
@@ -94,14 +140,8 @@ public class Manager {
         return timer;
     }
 
-    public Personnage getMonstre(){return monstre;}
-
     public Ligne getLigne(){
         return ligne;
-    }
-
-    public Calculateur getCalculateur(){
-        return calculateur;
     }
 
 }

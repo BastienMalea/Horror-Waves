@@ -9,29 +9,30 @@ import model.manager.Manager;
 public class DeplaceurMechant extends Deplaceur {
 
     private Manager manager;
-    private Personnage monstre;
     private double STEP = 2;
 
-    public DeplaceurMechant(Collisionneur collisionneur, Personnage monstre, Manager manager)
+    public DeplaceurMechant(Collisionneur collisionneur, Manager manager)
     {
         super(collisionneur);
-        this.monstre= monstre;
         this.manager=manager;
     }
 
     @Override
     public void update() {
-        if(manager.getJoueur().getPosX()-monstre.getPosX()<0)
-            if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() - STEP, monstre))
-                monstre.setPosX(monstre.getPosX() - STEP);
-        if(manager.getJoueur().getPosX()-monstre.getPosX()>0)
-            if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() + STEP, monstre))
-                monstre.setPosX(monstre.getPosX() + STEP);
-        if(manager.getJoueur().getPosY()-monstre.getPosY()<0)
-            if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() - STEP, monstre))
-                monstre.setPosY(monstre.getPosY() - STEP);
-        if(manager.getJoueur().getPosY()-monstre.getPosY()>0)
-            if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() + STEP, monstre))
-                monstre.setPosY(monstre.getPosY() + STEP);
+        if(!manager.getListeMonstre().isEmpty())
+            for(Personnage monstre: manager.getListeMonstre()){
+                if(manager.getJoueur().getPosX()-monstre.getPosX()<0)
+                    if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() - STEP, monstre))
+                        monstre.setPosX(monstre.getPosX() - STEP);
+                if(manager.getJoueur().getPosX()-monstre.getPosX()>0)
+                    if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() + STEP, monstre))
+                        monstre.setPosX(monstre.getPosX() + STEP);
+                if(manager.getJoueur().getPosY()-monstre.getPosY()<0)
+                    if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() - STEP, monstre))
+                        monstre.setPosY(monstre.getPosY() - STEP);
+                if(manager.getJoueur().getPosY()-monstre.getPosY()>0)
+                    if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() + STEP, monstre))
+                        monstre.setPosY(monstre.getPosY() + STEP);
+            }
     }
 }

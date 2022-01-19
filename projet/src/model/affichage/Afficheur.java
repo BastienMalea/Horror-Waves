@@ -1,14 +1,13 @@
 package model.affichage;
 
 import model.boucle.Observeur;
-import model.entite.Ligne;
 import model.manager.Calculateur;
 
-public abstract class Affichage extends Observeur {
+public abstract class Afficheur extends Observeur {
 
     protected Calculateur calculateur;
 
-    public Affichage(Calculateur calculateur){
+    public Afficheur(Calculateur calculateur){
         this.calculateur = calculateur;
     };
 

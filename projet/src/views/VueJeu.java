@@ -3,6 +3,7 @@ package views;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,7 +22,7 @@ public class VueJeu extends AnchorPane {
     private Rectangle joueurVue;
 
     @FXML
-    private Rectangle monstreVue;
+    private Group listeMonstreVue;
 
     @FXML
     private Label timer;
@@ -34,7 +35,7 @@ public class VueJeu extends AnchorPane {
 
     @FXML
     public void initialize(){
-        manager = new Manager();
+        manager = new Manager(this);
         StringConverter<Number> converter = new NumberStringConverter();
 
         joueurVue.xProperty().bind(manager.getJoueur().posXProperty());
@@ -42,10 +43,6 @@ public class VueJeu extends AnchorPane {
         joueurVue.heightProperty().bind(manager.getJoueur().hauteurProperty());
         joueurVue.widthProperty().bind(manager.getJoueur().largeurProperty());
 
-        monstreVue.xProperty().bind(manager.getMonstre().posXProperty());
-        monstreVue.yProperty().bind(manager.getMonstre().posYProperty());
-        monstreVue.heightProperty().bind(manager.getMonstre().hauteurProperty());
-        monstreVue.widthProperty().bind(manager.getMonstre().largeurProperty());
 
         Bindings.bindBidirectional(timer.textProperty(), manager.getTimer().tempsProperty(), converter);
 
@@ -80,6 +77,10 @@ public class VueJeu extends AnchorPane {
         });
 
 
+    }
+
+    public Group getListeMonstreVue(){
+        return listeMonstreVue;
     }
 
 

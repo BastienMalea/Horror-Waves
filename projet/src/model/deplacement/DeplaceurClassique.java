@@ -34,7 +34,6 @@ public class DeplaceurClassique extends Deplaceur{
         if(listeTouche.size() == 2){
             STEP = (STEP*5)/6;
         }
-        System.out.println(STEP);
         if(listeTouche.contains(KeyCode.UP))
             if(!collisionneur.isCollision(joueur.getPosX(), joueur.getPosY() - STEP, joueur))
                 joueur.setPosY(joueur.getPosY() - STEP);
