@@ -72,7 +72,7 @@ public class Manager {
     public Manager(VueJeu vueJeu){
         this.vueJeu = vueJeu;
 
-        joueur = new Joueur(250, 200, 20, 20);
+        joueur = new Joueur(250, 200, 40, 40);
         monstre = new Monstre(15,15,10,10);
         ligne = new Ligne(250, 200);
         mouse = new Mouse();
