@@ -21,16 +21,16 @@ public class DeplaceurMechant extends Deplaceur {
     public void update() {
         if(!manager.getListeMonstre().isEmpty())
             for(Personnage monstre: manager.getListeMonstre()){
-                if(manager.getJoueur().getPosX()-monstre.getPosX()<0)
+                if(manager.getJoueur().getPosCentreX()-monstre.getPosCentreX()<0)
                     if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() - STEP, monstre))
                         monstre.setPosX(monstre.getPosX() - STEP);
-                if(manager.getJoueur().getPosX()-monstre.getPosX()>0)
+                if(manager.getJoueur().getPosCentreX()-monstre.getPosCentreX()>0)
                     if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() + STEP, monstre))
                         monstre.setPosX(monstre.getPosX() + STEP);
-                if(manager.getJoueur().getPosY()-monstre.getPosY()<0)
+                if(manager.getJoueur().getPosCentreY()-monstre.getPosCentreY()<0)
                     if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() - STEP, monstre))
                         monstre.setPosY(monstre.getPosY() - STEP);
-                if(manager.getJoueur().getPosY()-monstre.getPosY()>0)
+                if(manager.getJoueur().getPosCentreY()-monstre.getPosCentreY()>0)
                     if(!collisionneur.isCollision(monstre.getPosX(), monstre.getPosY() + STEP, monstre))
                         monstre.setPosY(monstre.getPosY() + STEP);
             }

@@ -10,9 +10,9 @@ public class CollisionneurClassique extends Collisionneur{
     public Boolean isCollision(double x, double y, Personnage p) {
         Boolean etat;
         etat = x < 0 ||
-               x > getlargeurFenetre() - 20 - OFFSET_WINDOW ||
+               x > getlargeurFenetre() - p.getHitBoxLargeur() - OFFSET_WINDOW ||
                y < 0 ||
-               y > gethauteurFenetre() - 20 - OFFSET_WINDOW*2.5;
+               y > gethauteurFenetre() - p.getHitBoxHauteur() - OFFSET_WINDOW*2.5;
         return etat;
     }
 }

@@ -16,4 +16,5 @@
     <Rectangle fx:id="joueurVue"></Rectangle>
     <Label fx:id="timer"/>
     <Group fx:id="listeMonstreVue"/>
+    <Group fx:id="listeProjectileVue"/>
 </AnchorPane>

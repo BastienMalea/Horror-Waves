@@ -43,11 +43,11 @@ public class VueJeu extends AnchorPane {
 
     @FXML
     public void initialize(){
-
         manager = new Manager(this);
+
         Image img = new Image("Image/Perso/Pink_Monster.png",
                 manager.getJoueur().getHauteur(), manager.getJoueur().getLargeur(),
-                true, false);
+                false, true);
         joueurVue.setFill(new ImagePattern(img));
 
 

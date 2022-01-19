@@ -32,7 +32,6 @@ import java.util.List;
 public class Manager {
     //objet représenté sur la scene
     private Personnage joueur;
-    private Personnage monstre;
     private Timer timer;
     private Mouse mouse;
     private Ligne ligne;
@@ -72,8 +71,10 @@ public class Manager {
     public Manager(VueJeu vueJeu){
         this.vueJeu = vueJeu;
 
-        joueur = new Joueur(250, 200, 40, 40);
-        monstre = new Monstre(15,15,10,10);
+        joueur = new Joueur(250, 200, 60, 60, 17.0/28.0, 1);
+        System.out.println(joueur.getHitBoxHauteur() + "   " + joueur.getHitBoxLargeur());
+        System.out.println(joueur.getPosCentreX() + "   " + joueur.getPosCentreY());
+
         ligne = new Ligne(250, 200);
         mouse = new Mouse();
         timer = new Timer(0, 0);
@@ -111,7 +112,7 @@ public class Manager {
     }
 
     public void creerMonstre(double x, double y){
-        oListeMonstre.add(new Monstre(x,y,10,10));
+        oListeMonstre.add(new Monstre(x,y,10,10, 1, 1));
         setListeMonstre(oListeMonstre);
         listeRectangle.add(new Rectangle());
         listeRectangle.get(listeRectangle.size()-1).setId(String.valueOf(listeRectangle.size()-1));

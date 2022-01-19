@@ -6,12 +6,12 @@ public abstract class Personnage {
 
     private SimpleDoubleProperty posX = new SimpleDoubleProperty();
         public double getPosX() { return posX.get(); }
-        public void setPosX(double posX) { this.posX.set(posX); this.setPosCentreX(posX+(this.getLargeur())/2); }
+        public void setPosX(double posX) { this.posX.set(posX); this.setPosCentreX(posX+(this.getHitBoxLargeur())/2); }
         public SimpleDoubleProperty posXProperty() { return posX; }
 
     private SimpleDoubleProperty posY = new SimpleDoubleProperty();
         public double getPosY() { return posY.get(); }
-        public void setPosY(double posY) { this.posY.set(posY); this.setPosCentreY(posY+(this.getHauteur())/2); }
+        public void setPosY(double posY) { this.posY.set(posY); this.setPosCentreY(posY+(this.getHitBoxHauteur())/2); }
         public SimpleDoubleProperty posYProperty() { return posY; }
 
     private SimpleDoubleProperty hauteur = new SimpleDoubleProperty();
@@ -23,6 +23,16 @@ public abstract class Personnage {
         public double getLargeur() { return largeur.get(); }
         public void setLargeur(double largeur) { this.largeur.set(largeur); }
         public SimpleDoubleProperty largeurProperty() { return largeur; }
+
+    private SimpleDoubleProperty hitBoxHauteur = new SimpleDoubleProperty();
+        public double getHitBoxHauteur() { return hitBoxHauteur.get(); }
+        public void setHitBoxHauteur(double hitBoxHauteur) { this.hitBoxHauteur.set(hitBoxHauteur); }
+        public SimpleDoubleProperty hitBoxHauteurProperty() { return hitBoxHauteur; }
+
+    private SimpleDoubleProperty hitBoxLargeur = new SimpleDoubleProperty();
+        public double getHitBoxLargeur() { return hitBoxLargeur.get(); }
+        public void setHitBoxLargeur(double hitBoxLargeur) { this.hitBoxLargeur.set(hitBoxLargeur); }
+        public SimpleDoubleProperty hitBoxLargeurProperty() { return hitBoxLargeur; }
 
 
     private SimpleDoubleProperty posCentreX = new SimpleDoubleProperty();
@@ -36,9 +46,11 @@ public abstract class Personnage {
         public SimpleDoubleProperty posCentreYProperty() { return posCentreY; }
 
 
-    public Personnage(double x, double y, double hauteur, double largeur){
+    public Personnage(double x, double y, double hauteur, double largeur, double ratioHitBoxX, double ratioHitBoxY){
         setHauteur(hauteur);
         setLargeur(largeur);
+        setHitBoxHauteur(hauteur*ratioHitBoxY);
+        setHitBoxLargeur(largeur*ratioHitBoxX);
         setPosX(x);
         setPosY(y);
     }
