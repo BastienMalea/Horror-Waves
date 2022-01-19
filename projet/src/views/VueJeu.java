@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -49,6 +49,7 @@ public class VueJeu extends AnchorPane {
                 manager.getJoueur().getHauteur(), manager.getJoueur().getLargeur(),
                 false, true);
         joueurVue.setFill(new ImagePattern(img));
+
 
 
         StringConverter<Number> converter = new NumberStringConverter();

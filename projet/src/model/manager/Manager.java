@@ -72,8 +72,6 @@ public class Manager {
         this.vueJeu = vueJeu;
 
         joueur = new Joueur(250, 200, 60, 60, 17.0/28.0, 1);
-        System.out.println(joueur.getHitBoxHauteur() + "   " + joueur.getHitBoxLargeur());
-        System.out.println(joueur.getPosCentreX() + "   " + joueur.getPosCentreY());
 
         ligne = new Ligne(250, 200);
         mouse = new Mouse();

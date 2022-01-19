@@ -16,6 +16,8 @@ public class Launch extends Application {
         Parent racine = FXMLLoader.load(Launch.class.getResource("/FXML/vueJeu.fxml"));
         Scene scene = new Scene(racine);
 
+        scene.getStylesheets().addAll(this.getClass().getResource("/FXML/style.css").toExternalForm());
+
         primaryStage.setResizable(false);
         primaryStage.setHeight(800);
         primaryStage.setWidth(1200);
