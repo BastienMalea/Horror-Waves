@@ -30,6 +30,9 @@ public class VueJeu extends AnchorPane {
     @FXML
     private Line viseur;
 
+    @FXML
+    private Group listeProjectileVue;
+
 
     private Manager manager;
 
@@ -69,10 +72,17 @@ public class VueJeu extends AnchorPane {
             }
         });
 
-        Launch.getPrimaryStage().addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+        Launch.getPrimaryStage().addEventFilter(MouseEvent.ANY, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 manager.getMouse().updateCoordonnees(event.getSceneX(), event.getSceneY());
+            }
+        });
+
+        Launch.getPrimaryStage().addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println(event.getButton());
             }
         });
 
