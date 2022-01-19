@@ -1,12 +1,10 @@
 package model.deplacement;
 
 import model.entite.Personnage;
-import model.manager.Manager;
 
 public class CollisionneurClassique extends Collisionneur{
 
     private final int OFFSET_WINDOW = 15;
-    private Manager manager;
 
     @Override
     public Boolean isCollision(double x, double y, Personnage p) {
