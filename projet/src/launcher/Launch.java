@@ -8,12 +8,13 @@ import javafx.stage.Stage;
 
 public class Launch extends Application {
     private static Stage primaryStage;
+    private static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
 
-        Parent racine = FXMLLoader.load(Launch.class.getResource("/FXML/vueJeu.fxml"));
+        Parent racine = FXMLLoader.load(Launch.class.getResource("/FXML/Menu.fxml"));
         Scene scene = new Scene(racine);
 
         scene.getStylesheets().addAll(this.getClass().getResource("/FXML/style.css").toExternalForm());
@@ -24,6 +25,9 @@ public class Launch extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+
+    public static Stage getStage(){ return stage; }
 
     public static Stage getPrimaryStage(){
         return primaryStage;
