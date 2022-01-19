@@ -5,15 +5,19 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import launcher.Launch;
 import model.manager.Manager;
+
+import javax.swing.text.html.ImageView;
 
 
 public class VueJeu extends AnchorPane {
@@ -33,9 +37,15 @@ public class VueJeu extends AnchorPane {
 
     private Manager manager;
 
+
     @FXML
     public void initialize(){
+
         manager = new Manager(this);
+        Image img = new Image("/Image/persoDroite.png", manager.getJoueur().getHauteur(), manager.getJoueur().getLargeur(), true, false);
+        joueurVue.setFill(new ImagePattern(img));
+
+
         StringConverter<Number> converter = new NumberStringConverter();
 
         joueurVue.xProperty().bind(manager.getJoueur().posXProperty());
