@@ -42,7 +42,9 @@ public class VueJeu extends AnchorPane {
     public void initialize(){
 
         manager = new Manager(this);
-        Image img = new Image("/Image/persoDroite.png", manager.getJoueur().getHauteur(), manager.getJoueur().getLargeur(), true, false);
+        Image img = new Image("Image/Perso/Pink_Monster.png",
+                manager.getJoueur().getHauteur(), manager.getJoueur().getLargeur(),
+                true, false);
         joueurVue.setFill(new ImagePattern(img));
 
 
