@@ -7,6 +7,9 @@ public class BoucleJeu extends Boucleur{
     private int multiplicateur = 1000;
     private int nbGen = 0;
 
+    /**
+     * fonction augmentant son rythme au fur et à mesure de la partie
+     */
     @Override
     public void run() {
         while(true){
@@ -32,19 +35,20 @@ public class BoucleJeu extends Boucleur{
         }
     }
 
+    /**
+     * set max
+     * @param max
+     */
     public void setMax(int max){
         this.max = max;
     }
 
-    public int getMax(){
-        return max;
-    }
-
+    /**
+     * set multiplicateur
+     * @param multiplicateur
+     */
     public void setMultiplicateur(int multiplicateur){
         this.multiplicateur = multiplicateur;
     }
 
-    public int getMultiplicateur(){
-        return multiplicateur;
-    }
 }

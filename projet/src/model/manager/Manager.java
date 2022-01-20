@@ -177,7 +177,12 @@ public class Manager {
         listeThread.add(etat);
     }
 
-
+    /**
+     * crée un monstre et son rectangle associé dans la scene et l'ajoute à la liste de monstre / liste de rectangle du manager
+     * @param x position du monstre en x
+     * @param y position du monstre en y
+     * @param type type de monstre (3 types possibles actuellement)
+     */
     public void creerMonstre(double x, double y, int type){
         Image img;
         switch(type){
@@ -217,6 +222,12 @@ public class Manager {
         vueJeu.getListeMonstreVue().getChildren().add(listeRectangle.get(listeRectangle.size()-1));
     }
 
+    /**
+     * crée un projectile et son rectangle associé dans la scene et l'ajoute à la liste de projectile / liste de rectangleProjectile du manager
+     * @param x position du monstre en x
+     * @param y position du monstre en y
+     * @param xMouse position de la souris pour connaitre la direction du projectile (droite ou gauche)
+     */
     public void creerProjectile(double x, double y, double xMouse){
         int direction = 1;
         if(x > xMouse) direction = -1;

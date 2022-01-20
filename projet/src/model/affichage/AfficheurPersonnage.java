@@ -8,6 +8,9 @@ import model.manager.Manager;
 public class AfficheurPersonnage extends Afficheur{
     private Manager manager;
     private Personnage joueur;
+    /**
+     * permet de savoir si un personnage se déplace à gauche ou a droite en comparant avec la position actuelle
+     */
     private double oldX;
 
     public AfficheurPersonnage(Manager manager){
@@ -16,6 +19,11 @@ public class AfficheurPersonnage extends Afficheur{
         this.oldX = joueur.getPosX();
     }
 
+    /**
+     * actualise l'affichage du personnage.
+     * si il va à droite, l'image montre un personnage tourné vers la droite
+     * si il va à gauche, l'image montre un personnage tourné vers la gauche
+     */
     @Override
     public void update() {
         if(oldX < joueur.getPosX()){

@@ -12,13 +12,25 @@ import java.util.List;
 
 public class AfficheurMonstre extends Afficheur{
     private Manager manager;
+    /**
+     * permet de savoir si un personnage se déplace à gauche ou a droite en comparant avec la position actuelle
+     */
     private List<Double> oldX;
 
+    /**
+     * constructeur de l'afficheur de monstre
+     * @param manager
+     */
     public AfficheurMonstre(Manager manager){
         this.manager = manager;
         this.oldX = new ArrayList<Double>();
     }
 
+    /**
+     * parcour la liste de monstre et actualise l'affichage de chacun.
+     * si il va à droite, l'image montre un monstre tourné vers la droite
+     * si il va à gauche, l'image montre un monstre tourné vers la gauche
+     */
     @Override
     public void update() {
         int i = 0;
@@ -44,6 +56,10 @@ public class AfficheurMonstre extends Afficheur{
             }
     }
 
+    /**
+     * ajouter la coordonnée d'un monstre la frame ou il est crée
+     * @param x
+     */
     public void addOldX(double x){
         this.oldX.add(x);
     }

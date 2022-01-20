@@ -8,10 +8,18 @@ public class CreateurMonstre extends Observeur {
 
     private Manager manager;
 
+    /**
+     * constructeur
+     * @param manager
+     */
     public CreateurMonstre(Manager manager){
         this.manager = manager;
     }
 
+    /**
+     * génère des coordonnés aléatoire dans une certaine zone ou le spawn est possible
+     * génère aléatoirement un type de monstre
+     */
     @Override
     public void update() {
         Random rand = new Random();
