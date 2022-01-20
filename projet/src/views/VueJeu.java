@@ -112,6 +112,10 @@ public class VueJeu extends AnchorPane {
         return listeMonstreVue;
     }
 
+    public Group getListeProjectileVue(){
+        return listeProjectileVue;
+    }
+
     public Rectangle getJoueurVue(){
         return joueurVue;
     }
