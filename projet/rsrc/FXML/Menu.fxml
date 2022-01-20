@@ -10,11 +10,6 @@
          <Font name="Chiller" size="40.0" />
       </font>
    </Button>
-   <Button alignment="CENTER" layoutX="400" layoutY="400.0" mnemonicParsing="false" text="Tableau des scores" textAlignment="CENTER">
-      <font>
-         <Font name="Chiller" size="40.0" />
-      </font>
-   </Button>
    <Label layoutX="545.0" layoutY="6.0" text="Horror Wave" textAlignment="CENTER" textFill="#FFFFFF">
       <font>
          <Font name="Chiller" size="70.0" />

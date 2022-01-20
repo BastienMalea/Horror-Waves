@@ -4,9 +4,9 @@ import model.boucle.Observeur;
 import model.entite.Personnage;
 import model.manager.Manager;
 
-public class EtatJoueur extends Observeur {
+public class EtatJoueur extends Afficheur {
 
-    Manager manager;
+    private Manager manager;
 
     /***
      * constructeur
@@ -21,7 +21,7 @@ public class EtatJoueur extends Observeur {
      * @param pv
      * @return Boolean
      */
-    public Boolean verifierVie(int pv){
+    private Boolean verifierVie(int pv){
         if(pv==0)
             return true;
         return false;

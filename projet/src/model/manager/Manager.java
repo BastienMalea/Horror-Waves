@@ -47,7 +47,7 @@ public class Manager {
     private Timer timer;
     private Mouse mouse;
     private Ligne ligne;
-    private EtatJoueur etatJoueur;
+
 
     //calcul les collisions
     private Collisionneur collisionneur;
@@ -63,6 +63,8 @@ public class Manager {
     private Afficheur afficheurJoueur;
     //raffraichit l'affichage des monstre
     private Afficheur afficheurMonstre;
+    //raffraichit la vie du joueur
+    private EtatJoueur etatJoueur;
     //crée les monstres aléatoirement sur la scene
     private CreateurMonstre createurMonstre;
 

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 /**
  * Launcher de notre jeu
@@ -29,6 +30,7 @@ public class Launch extends Application {
 
         primaryStage.setResizable(false);
         primaryStage.setHeight(800);
+        primaryStage.getIcons().add(new Image("/Image/Icon.png"));
         primaryStage.setWidth(1200);
         primaryStage.setScene(scene);
         primaryStage.show();
