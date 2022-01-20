@@ -4,13 +4,14 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.affichage.Afficheur;
+import model.affichage.AfficheurMonstre;
+import model.affichage.AfficheurPersonnage;
 import model.affichage.AfficheurViseur;
-import model.boucle.BoucleAffichage;
-import model.boucle.BoucleDeplacement;
-import model.boucle.BoucleTemps;
-import model.boucle.Boucleur;
+import model.boucle.*;
 
 import model.deplacement.Collisionneur;
 import model.deplacement.CollisionneurClassique;
@@ -36,6 +37,9 @@ public class Manager {
     private Mouse mouse;
     private Ligne ligne;
 
+    //images
+
+
     //calcul les collisions
     private Collisionneur collisionneur;
     //calcul les déplacements
@@ -45,6 +49,12 @@ public class Manager {
     private Calculateur calculateur;
     //raffraichit l'affichage du viseur
     private Afficheur afficheurViseur;
+    //raffraichit l'affichage du joueur
+    private Afficheur afficheurJoueur;
+    //raffraichit l'affichage des monstre
+    private Afficheur afficheurMonstre;
+    //crée les monstres aléatoirement sur la scene
+    private CreateurMonstre createurMonstre;
 
     //boucle pour le chrono
     private Boucleur boucleTemps;
@@ -52,6 +62,8 @@ public class Manager {
     private Boucleur boucleDeplacement;
     //boucle pour l'affichage
     private Boucleur boucleAffichage;
+    //boucle pour la génération de monstre
+    private Boucleur boucleJeu;
 
     //liste de rectangle monstres
     private List<Rectangle> listeRectangle;
@@ -71,7 +83,7 @@ public class Manager {
     public Manager(VueJeu vueJeu){
         this.vueJeu = vueJeu;
 
-        joueur = new Joueur(250, 200, 60, 60, 17.0/28.0, 1);
+        joueur = new Joueur(550, 350, 60, 60, 17.0/28.0, 1);
 
         ligne = new Ligne(250, 200);
         mouse = new Mouse();
@@ -83,15 +95,13 @@ public class Manager {
 
         calculateur = new Calculateur();
         afficheurViseur = new AfficheurViseur(calculateur, ligne, joueur, mouse);
+        afficheurJoueur = new AfficheurPersonnage(this);
+        afficheurMonstre = new AfficheurMonstre(this);
 
         oListeMonstre = FXCollections.observableArrayList();
+        setListeMonstre(oListeMonstre);
         listeRectangle = new ArrayList<Rectangle>();
-
-        creerMonstre(10, 10);
-        creerMonstre(100, 100);
-        creerMonstre(200, 200);
-        creerMonstre(300, 300);
-        creerMonstre(400, 400);
+        createurMonstre = new CreateurMonstre(this);
 
 
         boucleTemps = new BoucleTemps();
@@ -105,12 +115,44 @@ public class Manager {
 
         boucleAffichage = new BoucleAffichage();
         boucleAffichage.ajouterObservateur(afficheurViseur);
+        boucleAffichage.ajouterObservateur(afficheurJoueur);
+        boucleAffichage.ajouterObservateur(afficheurMonstre);
         new Thread(boucleAffichage).start();
+
+        boucleJeu = new BoucleJeu();
+        boucleJeu.ajouterObservateur(createurMonstre);
+        new Thread(boucleJeu).start();
 
     }
 
-    public void creerMonstre(double x, double y){
-        oListeMonstre.add(new Monstre(x,y,10,10, 1, 1));
+    public void creerMonstre(double x, double y, int type){
+        Image img;
+        switch(type){
+            case 0:
+                oListeMonstre.add(new Monstre(x,y,50,50, 22.0/26.0, 1, 0));
+                img = new Image("Image/MechantPetit/Tiny.png",
+                        oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
+                        false, true);
+                break;
+            case 1:
+                oListeMonstre.add(new Monstre(x,y,50,50, 20.0/27.0, 1, 1));
+                img = new Image("Image/MechantRouge/Red.png",
+                        oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
+                        false, true);
+                break;
+            case 2:
+                oListeMonstre.add(new Monstre(x,y,50,50, 27.0/30.0, 1, 2));
+                img = new Image("Image/Ours/Bear.png",
+                        oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
+                        false, true);
+                break;
+            default:
+                oListeMonstre.add(new Monstre(x,y,50,50, 27.0/30.0, 1, 2));
+                img = new Image("Image/Ours/Bear2.png",
+                        oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
+                        false, true);
+                break;
+        }
         setListeMonstre(oListeMonstre);
         listeRectangle.add(new Rectangle());
         listeRectangle.get(listeRectangle.size()-1).setId(String.valueOf(listeRectangle.size()-1));
@@ -118,6 +160,7 @@ public class Manager {
         listeRectangle.get(listeRectangle.size()-1).yProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).posYProperty());
         listeRectangle.get(listeRectangle.size()-1).heightProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).hauteurProperty());
         listeRectangle.get(listeRectangle.size()-1).widthProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).largeurProperty());
+        listeRectangle.get(listeRectangle.size()-1).setFill(new ImagePattern(img));
         vueJeu.getListeMonstreVue().getChildren().add(listeRectangle.get(listeRectangle.size()-1));
     }
 
@@ -141,6 +184,14 @@ public class Manager {
 
     public Ligne getLigne(){
         return ligne;
+    }
+
+    public VueJeu getVueJeu(){
+        return vueJeu;
+    }
+
+    public Afficheur getAfficheurMonstre(){
+        return afficheurMonstre;
     }
 
 }

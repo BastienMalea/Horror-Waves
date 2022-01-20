@@ -21,4 +21,5 @@ public abstract class Boucleur implements Runnable {
             Platform.runLater(() -> o.update());
         }
     }
+
 }

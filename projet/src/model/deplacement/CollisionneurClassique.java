@@ -4,6 +4,8 @@ import model.entite.Personnage;
 
 public class CollisionneurClassique extends Collisionneur{
 
+    private final int OFFSET_X_WINDOW = 315;
+    private final int OFFSET_Y_WINDOW = 175;
     private final int OFFSET_WINDOW = 15;
 
     /**
@@ -16,12 +18,24 @@ public class CollisionneurClassique extends Collisionneur{
     @Override
     public Boolean isCollision(double x, double y, Personnage p) {
         Boolean etat;
-        etat = x < 0 ||
-               x > getlargeurFenetre() - p.getHitBoxLargeur() - OFFSET_WINDOW ||
-               y < 0 ||
-               y > gethauteurFenetre() - p.getHitBoxHauteur() - OFFSET_WINDOW*2.5;
+        etat = x < 300 ||
+               x > getlargeurFenetre() - p.getHitBoxLargeur() - OFFSET_X_WINDOW ||
+               y < 130 ||
+               y > gethauteurFenetre() - p.getHitBoxHauteur() - OFFSET_Y_WINDOW;
         return etat;
     }
+
+    @Override
+    public Boolean isCollisionMonstreWindow(double x, double y, Personnage p){
+        Boolean etat;
+        etat = x < 0 ||
+                x > getlargeurFenetre() - p.getHitBoxLargeur() - OFFSET_WINDOW ||
+                y < 0 ||
+                y > gethauteurFenetre() - p.getHitBoxHauteur() - OFFSET_WINDOW*2.5;
+        return etat;
+    }
+
+
 
     /**
      * Methode qui définit s'il y a collision entre deux personnages
@@ -29,6 +43,7 @@ public class CollisionneurClassique extends Collisionneur{
      * @param p2 Deuxieme Personnage
      * @return Boolean
      */
+    @Override
     public Boolean isCollisionEntity(Personnage p, Personnage p2)
     {
         double x=p.getPosX();

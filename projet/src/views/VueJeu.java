@@ -95,7 +95,7 @@ public class VueJeu extends AnchorPane {
         Launch.getPrimaryStage().addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println(event.getButton());
+                //System.out.println(event.getButton());
             }
         });
 
@@ -104,6 +104,10 @@ public class VueJeu extends AnchorPane {
 
     public Group getListeMonstreVue(){
         return listeMonstreVue;
+    }
+
+    public Rectangle getJoueurVue(){
+        return joueurVue;
     }
 
 

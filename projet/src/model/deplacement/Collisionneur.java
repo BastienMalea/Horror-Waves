@@ -16,5 +16,6 @@ public abstract class Collisionneur {
     public SimpleDoubleProperty largeurFenetreProperty() { return largeurFenetre; }
 
     public abstract Boolean isCollision(double x, double y, Personnage p);
+    public abstract Boolean isCollisionMonstreWindow(double x, double y, Personnage p);
     public abstract Boolean isCollisionEntity(Personnage p, Personnage p2);
 }

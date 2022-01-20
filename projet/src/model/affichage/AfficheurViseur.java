@@ -6,12 +6,13 @@ import model.entite.Personnage;
 import model.manager.Calculateur;
 
 public class AfficheurViseur extends Afficheur {
+    private Calculateur calculateur;
     private Ligne ligne;
     private Personnage joueur;
     private Mouse mouse;
 
     public AfficheurViseur(Calculateur calculateur, Ligne ligne, Personnage joueur, Mouse mouse){
-        super(calculateur);
+        this.calculateur = calculateur;
         this.ligne = ligne;
         this.joueur = joueur;
         this.mouse = mouse;

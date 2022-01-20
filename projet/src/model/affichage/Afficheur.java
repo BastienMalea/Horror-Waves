@@ -5,10 +5,8 @@ import model.manager.Calculateur;
 
 public abstract class Afficheur extends Observeur {
 
-    protected Calculateur calculateur;
+    public Afficheur(){
 
-    public Afficheur(Calculateur calculateur){
-        this.calculateur = calculateur;
-    };
+    }
 
 }
