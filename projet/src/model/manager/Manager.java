@@ -12,6 +12,11 @@ import model.affichage.AfficheurMonstre;
 import model.affichage.AfficheurPersonnage;
 import model.affichage.AfficheurViseur;
 import model.boucle.*;
+import model.affichage.EtatJoueur;
+import model.boucle.BoucleAffichage;
+import model.boucle.BoucleDeplacement;
+import model.boucle.BoucleTemps;
+import model.boucle.Boucleur;
 
 import model.deplacement.Collisionneur;
 import model.deplacement.CollisionneurClassique;
@@ -36,6 +41,7 @@ public class Manager {
     private Timer timer;
     private Mouse mouse;
     private Ligne ligne;
+    private EtatJoueur etatJoueur;
 
     //images
 
@@ -83,7 +89,8 @@ public class Manager {
     public Manager(VueJeu vueJeu){
         this.vueJeu = vueJeu;
 
-        joueur = new Joueur(550, 350, 60, 60, 17.0/28.0, 1);
+        joueur = new Joueur(500, 300, 60, 60, 17.0/28.0, 1, 3);
+        etatJoueur=new EtatJoueur(this);
 
         ligne = new Ligne(250, 200);
         mouse = new Mouse();
@@ -117,6 +124,7 @@ public class Manager {
         boucleAffichage.ajouterObservateur(afficheurViseur);
         boucleAffichage.ajouterObservateur(afficheurJoueur);
         boucleAffichage.ajouterObservateur(afficheurMonstre);
+        boucleAffichage.ajouterObservateur(etatJoueur);
         new Thread(boucleAffichage).start();
 
         boucleJeu = new BoucleJeu();
@@ -125,29 +133,30 @@ public class Manager {
 
     }
 
+
     public void creerMonstre(double x, double y, int type){
         Image img;
         switch(type){
             case 0:
-                oListeMonstre.add(new Monstre(x,y,50,50, 22.0/26.0, 1, 0));
+                oListeMonstre.add(new Monstre(x,y,50,50, 22.0/26.0, 1, 1, 0));
                 img = new Image("Image/MechantPetit/Tiny.png",
                         oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
                         false, true);
                 break;
             case 1:
-                oListeMonstre.add(new Monstre(x,y,50,50, 20.0/27.0, 1, 1));
+                oListeMonstre.add(new Monstre(x,y,50,50, 20.0/27.0, 1, 1, 1));
                 img = new Image("Image/MechantRouge/Red.png",
                         oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
                         false, true);
                 break;
             case 2:
-                oListeMonstre.add(new Monstre(x,y,50,50, 27.0/30.0, 1, 2));
+                oListeMonstre.add(new Monstre(x,y,50,50, 27.0/30.0, 1, 1, 2));
                 img = new Image("Image/Ours/Bear.png",
                         oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
                         false, true);
                 break;
             default:
-                oListeMonstre.add(new Monstre(x,y,50,50, 27.0/30.0, 1, 2));
+                oListeMonstre.add(new Monstre(x,y,50,50, 27.0/30.0, 1, 1, 2));
                 img = new Image("Image/Ours/Bear2.png",
                         oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
                         false, true);

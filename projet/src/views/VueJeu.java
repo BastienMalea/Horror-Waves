@@ -32,6 +32,9 @@ public class VueJeu extends AnchorPane {
     private Label timer;
 
     @FXML
+    private Label ptsDeVie;
+
+    @FXML
     private Line viseur;
 
     @FXML
@@ -51,7 +54,6 @@ public class VueJeu extends AnchorPane {
         joueurVue.setFill(new ImagePattern(img));
 
 
-
         StringConverter<Number> converter = new NumberStringConverter();
 
         joueurVue.xProperty().bind(manager.getJoueur().posXProperty());
@@ -60,6 +62,10 @@ public class VueJeu extends AnchorPane {
         joueurVue.widthProperty().bind(manager.getJoueur().largeurProperty());
 
 
+
+        //ptsDeVie.getStyleClass().add("label_pv");
+        ptsDeVie.setLayoutX(300);
+        Bindings.bindBidirectional(ptsDeVie.textProperty(), manager.getJoueur().pvProperty(), converter);
         Bindings.bindBidirectional(timer.textProperty(), manager.getTimer().tempsProperty(), converter);
 
         viseur.startXProperty().bind(manager.getJoueur().posCentreXProperty());
