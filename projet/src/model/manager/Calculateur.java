@@ -39,4 +39,16 @@ public class Calculateur {
         }
         return a*x+b;
     }
+
+    public double calculProjectileY(float aP, float bP, double xP){
+        return aP*xP+bP;
+    }
+
+    public float getA() {
+        return a;
+    }
+
+    public float getB() {
+        return b;
+    }
 }

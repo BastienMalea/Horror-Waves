@@ -4,9 +4,13 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import launcher.Launch;
 import model.affichage.Afficheur;
 import model.affichage.AfficheurMonstre;
 import model.affichage.AfficheurPersonnage;
@@ -31,6 +35,7 @@ import model.entite.Personnage;
 import model.entite.Timer;
 import views.VueJeu;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +54,7 @@ public class Manager {
     //calcul les déplacements
     private Deplaceur deplaceurJoueur;
     private Deplaceur deplaceurMechant;
+    private Deplaceur deplaceurProjectile;
     //calcul la droite pour le viseur
     private Calculateur calculateur;
     //raffraichit l'affichage du viseur
@@ -68,6 +74,8 @@ public class Manager {
     private Boucleur boucleAffichage;
     //boucle pour la génération de monstre
     private Boucleur boucleJeu;
+    //boucle pour gérer l'état du joueur
+    private Boucleur boucleEtatJoueur;
 
     //Threads
     private Thread affichage;
@@ -84,6 +92,16 @@ public class Manager {
         public List<Personnage> getListeMonstre(){ return listeMonstre.get(); }
         public void setListeMonstre(ObservableList<Personnage> listeMonstre){ this.listeMonstre.set(listeMonstre); }
         public ListProperty<Personnage> listeMonstreProperty(){ return listeMonstre; }
+
+    //liste de rectangle projectiles
+    private List<Rectangle> listeRectangleProjectile;
+    //listeObservable contenant les monstres
+    private ObservableList<Personnage> oListeProjectile;
+    //propriété encapsulant la liste observable contenant les monstres
+    private final ListProperty<Personnage> listeProjectile = new SimpleListProperty<Personnage>();
+        public List<Personnage> getListeProjectile(){ return listeProjectile.get(); }
+        public void setListeProjectile(ObservableList<Personnage> listeProjectile){ this.listeProjectile.set(listeProjectile); }
+        public ListProperty<Personnage> listeProjectileProperty(){ return listeProjectile; }
 
     //controlleur de la vue de jeu
     private VueJeu vueJeu;
@@ -103,6 +121,7 @@ public class Manager {
         collisionneur = new CollisionneurClassique();
         deplaceurJoueur = new DeplaceurClassique(collisionneur, joueur);
         deplaceurMechant = new DeplaceurMechant(collisionneur, this);
+        deplaceurProjectile = new DeplaceurProjectile(collisionneur, this);
 
         calculateur = new Calculateur();
         afficheurViseur = new AfficheurViseur(calculateur, ligne, joueur, mouse);
@@ -113,6 +132,13 @@ public class Manager {
         setListeMonstre(oListeMonstre);
         listeRectangle = new ArrayList<Rectangle>();
         createurMonstre = new CreateurMonstre(this);
+
+        oListeProjectile = FXCollections.observableArrayList();
+        setListeProjectile(oListeProjectile);
+        listeRectangleProjectile = new ArrayList<Rectangle>();
+
+
+
 
         listeThread = new ArrayList<Thread>();
 
@@ -125,6 +151,7 @@ public class Manager {
         boucleDeplacement = new BoucleDeplacement();
         boucleDeplacement.ajouterObservateur(deplaceurJoueur);
         boucleDeplacement.ajouterObservateur(deplaceurMechant);
+        boucleDeplacement.ajouterObservateur(deplaceurProjectile);
         Thread deplacement=new Thread(boucleDeplacement);
         deplacement.start();
         listeThread.add(deplacement);
@@ -133,7 +160,6 @@ public class Manager {
         boucleAffichage.ajouterObservateur(afficheurViseur);
         boucleAffichage.ajouterObservateur(afficheurJoueur);
         boucleAffichage.ajouterObservateur(afficheurMonstre);
-        boucleAffichage.ajouterObservateur(etatJoueur);
         Thread affichage=new Thread(boucleAffichage);
         affichage.start();
         listeThread.add(affichage);
@@ -143,6 +169,12 @@ public class Manager {
         Thread jeu = new Thread(boucleJeu);
         jeu.start();
         listeThread.add(jeu);
+
+        boucleEtatJoueur = new BoucleEtatJoueur();
+        boucleEtatJoueur.ajouterObservateur(etatJoueur);
+        Thread etat = new Thread(boucleEtatJoueur);
+        etat.start();
+        listeThread.add(etat);
     }
 
 
@@ -185,12 +217,39 @@ public class Manager {
         vueJeu.getListeMonstreVue().getChildren().add(listeRectangle.get(listeRectangle.size()-1));
     }
 
+    public void creerProjectile(double x, double y, double xMouse){
+        int direction = 1;
+        if(x > xMouse) direction = -1;
+        oListeProjectile.add(new Projectile(x, y, 10, 10, 1, 1, calculateur.getA(), calculateur.getB(), direction));
+        Image img = new Image("Image/Perso/Rock1.png",
+                oListeProjectile.get(oListeProjectile.size()-1).getHauteur(), oListeProjectile.get(oListeProjectile.size()-1).getLargeur(),
+                false, true);
+        setListeProjectile(oListeProjectile);
+        listeRectangleProjectile.add(new Rectangle());
+        listeRectangleProjectile.get(listeRectangleProjectile.size()-1).setId(String.valueOf(listeRectangleProjectile.size()-1));
+        listeRectangleProjectile.get(listeRectangleProjectile.size()-1).xProperty().bind(oListeProjectile.get(oListeProjectile.size()-1).posXProperty());
+        listeRectangleProjectile.get(listeRectangleProjectile.size()-1).yProperty().bind(oListeProjectile.get(oListeProjectile.size()-1).posYProperty());
+        listeRectangleProjectile.get(listeRectangleProjectile.size()-1).heightProperty().bind(oListeProjectile.get(oListeProjectile.size()-1).hauteurProperty());
+        listeRectangleProjectile.get(listeRectangleProjectile.size()-1).widthProperty().bind(oListeProjectile.get(oListeProjectile.size()-1).largeurProperty());
+        listeRectangleProjectile.get(listeRectangleProjectile.size()-1).setFill(new ImagePattern(img));
+        vueJeu.getListeProjectileVue().getChildren().add(listeRectangleProjectile.get(listeRectangleProjectile.size()-1));
+    }
+
     public void stopPartie(){
         if(joueur.getPv()==0){
             for(Thread thread: listeThread){
                 thread.stop();
             }
 
+            Parent racine = null;
+            try {
+                racine = FXMLLoader.load(Launch.class.getResource("/FXML/Menu.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene scene = new Scene(racine);
+            scene.getStylesheets().addAll(this.getClass().getResource("/FXML/style.css").toExternalForm());
+            Launch.getPrimaryStage().setScene(scene);
         }
 
     }
@@ -223,6 +282,18 @@ public class Manager {
 
     public Afficheur getAfficheurMonstre(){
         return afficheurMonstre;
+    }
+
+    public Calculateur getCalculateur(){
+        return calculateur;
+    }
+
+    public List<Rectangle> getListeRectangle(){
+        return listeRectangle;
+    }
+
+    public List<Rectangle> getListeRectangleProjectile(){
+        return listeRectangleProjectile;
     }
 
 }

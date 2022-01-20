@@ -7,11 +7,13 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import launcher.Launch;
@@ -55,6 +57,9 @@ public class VueJeu extends AnchorPane {
                 false, true);
         joueurVue.setFill(new ImagePattern(img));
 
+        timer.setFont(new Font("a Black Lives", 30));
+        ptsDeVie.setFont(new Font("a Black Lives", 30));
+
 
         StringConverter<Number> converter = new NumberStringConverter();
 
@@ -63,7 +68,7 @@ public class VueJeu extends AnchorPane {
         joueurVue.heightProperty().bind(manager.getJoueur().hauteurProperty());
         joueurVue.widthProperty().bind(manager.getJoueur().largeurProperty());
 
-        ptsDeVie.setLayoutX(300);
+        ptsDeVie.setLayoutX(1150);
         Bindings.bindBidirectional(ptsDeVie.textProperty(), manager.getJoueur().pvProperty(), converter);
         Bindings.bindBidirectional(timer.textProperty(), manager.getTimer().tempsProperty(), converter);
 
@@ -100,7 +105,10 @@ public class VueJeu extends AnchorPane {
         Launch.getPrimaryStage().addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //System.out.println(event.getButton());
+                if(event.getButton() == MouseButton.PRIMARY) {
+                    manager.creerProjectile(joueurVue.getX(), joueurVue.getY(), event.getSceneX());
+                    //System.out.println(event.getButton());
+                }
             }
         });
 

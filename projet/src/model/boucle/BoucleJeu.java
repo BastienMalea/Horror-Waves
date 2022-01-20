@@ -25,6 +25,8 @@ public class BoucleJeu extends Boucleur{
                 case 10: setMultiplicateur(700); break;
                 case 13: setMultiplicateur(500); break;
                 case 16: setMultiplicateur(200); break;
+                case 30: setMultiplicateur(100); break;
+                case 50: setMultiplicateur(50); break;
                 default: break;
             }
         }

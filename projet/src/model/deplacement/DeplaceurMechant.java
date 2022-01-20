@@ -9,7 +9,7 @@ import model.manager.Manager;
 public class DeplaceurMechant extends Deplaceur {
 
     private Manager manager;
-    private double STEP = 3;
+    private double STEP = 2.5;
 
     public DeplaceurMechant(Collisionneur collisionneur, Manager manager)
     {

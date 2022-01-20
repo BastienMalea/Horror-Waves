@@ -27,6 +27,7 @@ public class EtatJoueur extends Observeur {
                     manager.stopPartie();
                 else
                     manager.getJoueur().setPv(manager.getJoueur().getPv()-1);
+
             }
 
         }
