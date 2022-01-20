@@ -187,7 +187,7 @@ public class Manager {
         Image img;
         switch(type){
             case 0:
-                oListeMonstre.add(new Monstre(x,y,50,50, 22.0/26.0, 1, 1, 0));
+                oListeMonstre.add(new Monstre(x,y,50,50,20.0/27.0 , 1, 1, 0));
                 img = new Image("Image/MechantPetit/Tiny.png",
                         oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
                         false, true);
@@ -199,7 +199,7 @@ public class Manager {
                         false, true);
                 break;
             case 2:
-                oListeMonstre.add(new Monstre(x,y,50,50, 27.0/30.0, 1, 1, 2));
+                oListeMonstre.add(new Monstre(x,y,50,50, 20.0/27.0, 1, 1, 2));
                 img = new Image("Image/Ours/Bear.png",
                         oListeMonstre.get(oListeMonstre.size()-1).getHauteur(), oListeMonstre.get(oListeMonstre.size()-1).getLargeur(),
                         false, true);
@@ -254,7 +254,7 @@ public class Manager {
 
             Parent racine = null;
             try {
-                racine = FXMLLoader.load(Launch.class.getResource("/FXML/Menu.fxml"));
+                racine = FXMLLoader.load(Launch.class.getResource("/FXML/GameOver.fxml"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

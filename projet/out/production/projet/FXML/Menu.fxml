@@ -4,21 +4,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.VueMenu"
-            id="menu">
-
-   <Button layoutX="164.0" layoutY="79.0" mnemonicParsing="false" onAction="#lancerPartie" text="Jouer">
+<AnchorPane id="menu" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.VueMenu">
+   <Button layoutX="200" layoutY="200.0" mnemonicParsing="false" onAction="#lancerPartie" text="Jouer">
       <font>
-         <Font name="Corbel" size="20.0" />
+         <Font name="Chiller" size="40.0" />
       </font>
    </Button>
-   <Button alignment="CENTER" layoutX="219.0" layoutY="220.0" mnemonicParsing="false" text="Tableau des scores" textAlignment="CENTER">
+   <Button alignment="CENTER" layoutX="400" layoutY="400.0" mnemonicParsing="false" text="Tableau des scores" textAlignment="CENTER">
       <font>
-         <Font name="Corbel" size="20.0" />
+         <Font name="Chiller" size="40.0" />
       </font>
    </Button>
+   <Label layoutX="545.0" layoutY="6.0" text="Horror Wave" textAlignment="CENTER" textFill="#FFFFFF">
+      <font>
+         <Font name="Chiller" size="70.0" />
+      </font>
+   </Label>
 
 </AnchorPane>

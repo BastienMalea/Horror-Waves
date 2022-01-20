@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane id="GameOver" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.VueGameOver">
+
+      <Button layoutX="200.0" layoutY="200.0" mnemonicParsing="false" text="Retour Au Menu" onAction="#retourMenu">
+         <font>
+            <Font name="Chiller" size="40.0" />
+         </font>
+      </Button>
+    <Label layoutX="545.0" layoutY="6.0" text="Horror Wave" textAlignment="CENTER" textFill="#FFFFFF">
+        <font>
+            <Font name="Chiller" size="70.0" />
+        </font>
+    </Label>
+</AnchorPane>

@@ -18,10 +18,10 @@ public class CollisionneurClassique extends Collisionneur{
     @Override
     public Boolean isCollision(double x, double y, Personnage p) {
         Boolean etat;
-        etat = x < 300 ||
+        etat = x < 310 ||
                x > getlargeurFenetre() - p.getHitBoxLargeur() - OFFSET_X_WINDOW ||
-               y < 130 ||
-               y > gethauteurFenetre() - p.getHitBoxHauteur() - OFFSET_Y_WINDOW;
+               y < 150 ||
+               y > gethauteurFenetre() - p.getHitBoxHauteur() - OFFSET_Y_WINDOW + OFFSET_WINDOW;
         return etat;
     }
 
@@ -51,12 +51,12 @@ public class CollisionneurClassique extends Collisionneur{
         double y=p.getPosY();
         double y2=p2.getPosY();
         //Collision de gauche a droite + haut en bas
-        if(x+p.getLargeur()>x2 && x+p.getLargeur()<x2+p2.getHitBoxLargeur() && y+p.getHauteur()>y2 && y+p2.getHauteur()<y2+p2.getHauteur())
+        if(x+p.getHitBoxLargeur()>x2 && x+p.getHitBoxLargeur()<x2+p2.getHitBoxLargeur() && y+p.getHitBoxHauteur()>y2 && y+p.getHauteur()<y2+p2.getHauteur())
             return true;
         //Collision de gauche a droite + bas en haut
-        if(x+p.getLargeur()>x2 && x+p.getLargeur()<x2+p2.getHitBoxLargeur() && y>y2 && y<y2+p2.getHauteur())
+        if(x+p.getHitBoxLargeur()>x2 && x+p.getHitBoxLargeur()<x2+p2.getHitBoxLargeur() && y>y2 && y<y2+p2.getHauteur())
             return true;
-        if(x>x2 && x<x2+p2.getHitBoxLargeur() && y+p.getHauteur()>y2 && y+p2.getHauteur()<y2+p2.getHauteur())
+        if(x>x2 && x<x2+p2.getHitBoxLargeur() && y+p.getHitBoxHauteur()>y2 && y+p.getHauteur()<y2+p2.getHauteur())
             return true;
         //Collision de droite a gauche + bas en haut
         if(x>x2 && x<x2+p2.getHitBoxLargeur() && y>y2 && y<y2+p2.getHauteur())

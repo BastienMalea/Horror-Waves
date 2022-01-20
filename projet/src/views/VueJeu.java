@@ -68,7 +68,6 @@ public class VueJeu extends AnchorPane {
         joueurVue.heightProperty().bind(manager.getJoueur().hauteurProperty());
         joueurVue.widthProperty().bind(manager.getJoueur().largeurProperty());
 
-        ptsDeVie.setLayoutX(1150);
         Bindings.bindBidirectional(ptsDeVie.textProperty(), manager.getJoueur().pvProperty(), converter);
         Bindings.bindBidirectional(timer.textProperty(), manager.getTimer().tempsProperty(), converter);
 
