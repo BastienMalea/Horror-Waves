@@ -1,5 +1,9 @@
 package model.boucle;
 
+
+/**
+ * Boucle qui gérera l'état d'un joueur (Pts De Vies)
+ */
 public class BoucleEtatJoueur extends Boucleur{
     @Override
     public void run() {
@@ -9,6 +13,7 @@ public class BoucleEtatJoueur extends Boucleur{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //Méthode qui appelle tout les observeurs sur la boucle
             beep();
         }
     }

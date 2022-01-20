@@ -1,5 +1,9 @@
 package model.boucle;
 
+
+/**
+ * Classe qui gérera tout les déplacements des Personnages
+ */
 public class BoucleDeplacement extends Boucleur{
     @Override
     public void run() {
@@ -9,6 +13,7 @@ public class BoucleDeplacement extends Boucleur{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //Méthode qui appelle tout les observeurs sur la boucle
             beep();
         }
     }

@@ -1,5 +1,8 @@
 package model.boucle;
 
+/**
+ * Boucle qui gérera le timer
+ */
 public class BoucleTemps extends Boucleur{
 
     @Override
@@ -10,6 +13,7 @@ public class BoucleTemps extends Boucleur{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //Méthode qui appelle tout les observeurs sur la boucle
             beep();
         }
     }

@@ -8,14 +8,13 @@ import launcher.Launch;
 
 import java.io.IOException;
 
+/**
+ * Controller qui gère la vue gameOver.fxml
+ */
 public class VueMenu {
 
-    @FXML
-    public void initialize(){
-
-    }
-
     //Quand l'utilisateur clique sur le bouton "JOUER"
+    //On instancie un nouveau stage: vueJeu.fxml
     public void lancerPartie(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent racine = FXMLLoader.load(Launch.class.getResource("/FXML/vueJeu.fxml"));
         Scene scene = new Scene(racine);

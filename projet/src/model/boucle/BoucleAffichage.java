@@ -1,5 +1,9 @@
 package model.boucle;
 
+
+/**
+ * Classe qui gérera tout les affichages sur la vue des Personnages
+ */
 public class BoucleAffichage extends Boucleur{
     @Override
     public void run() {
@@ -9,6 +13,7 @@ public class BoucleAffichage extends Boucleur{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //Méthode qui appelle tout les observeurs sur la boucle
             beep();
         }
     }

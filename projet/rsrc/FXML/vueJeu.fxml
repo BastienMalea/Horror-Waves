@@ -16,10 +16,10 @@
 
     <Line fx:id="viseur" strokeWidth="2" stroke="red"/>
     <Rectangle fx:id="joueurVue"></Rectangle>
-    <Label text="Temps survécu :" layoutX="10" layoutY="0" ><font><Font name="Chiller"/></font></Label>
-    <Label fx:id="timer" layoutX="30" layoutY="0"/>
-    <Label fx:id="ptsDeVie" layoutX="1150" />
-    <Label text="Vie restante :" layoutX="1100" layoutY="0"/>
+    <Label text="Temps survécu :" layoutX="10" layoutY="0" ><font><Font name="Chiller" size="40"/></font></Label>
+    <Label fx:id="timer" layoutX="200" layoutY="15"><font><Font name="Chiller" size="30"/></font></Label>
+    <Label fx:id="ptsDeVie" layoutX="1150" layoutY="15"><font><Font name="Chiller" size="30"/></font></Label>
+    <Label text="Vie restante :" layoutX="980" layoutY="0"><font><Font name="Chiller" size="40"/></font></Label>
     <Group fx:id="listeMonstreVue"/>
     <Group fx:id="listeProjectileVue"/>
 </AnchorPane>

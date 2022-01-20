@@ -1,5 +1,8 @@
 package model.entite;
 
+/**
+ * Classe projectile du jeu
+ */
 public class Projectile extends Personnage{
     private float a;
     private float b;
@@ -13,13 +16,27 @@ public class Projectile extends Personnage{
         this.direction = direction;
     }
 
+    /**
+     * Getter de la variable a pour l'équation de la fonction affine ax+b
+     * @return
+     */
     public float getA() {
         return a;
     }
 
+    /**
+     * Getter de la variable b pour l'équation de la fonction affine ax+b
+     * @return
+     */
+
     public float getB() {
         return b;
     }
+
+    /**
+     * Getter de la direction du projectile
+     * @return
+     */
 
     public int getDirection(){
         return direction;

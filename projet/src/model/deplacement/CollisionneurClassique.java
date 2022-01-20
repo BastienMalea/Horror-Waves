@@ -2,14 +2,21 @@ package model.deplacement;
 
 import model.entite.Personnage;
 
+
+/**
+ * Classe qui va implémenter les méthodes abstraites de la classe Collisionneur
+ */
 public class CollisionneurClassique extends Collisionneur{
 
+    //Coordonnée X de la fenêtre du milieu
     private final int OFFSET_X_WINDOW = 315;
+    //Coordonnée Y de la fenêtre du milieu
     private final int OFFSET_Y_WINDOW = 175;
+    //Bordure de la fenêtre principale
     private final int OFFSET_WINDOW = 15;
 
     /**
-     * Methode qui verifie la collision entre un personnage est la bordure de la fenêtre
+     * Methode qui verifie la collision entre un personnage est la bordure de la fenêtre du milieu
      * @param x coordonée x du personnage
      * @param y coordonée y du personnage
      * @param p Personnage
@@ -56,6 +63,7 @@ public class CollisionneurClassique extends Collisionneur{
         //Collision de gauche a droite + bas en haut
         if(x+p.getHitBoxLargeur()>x2 && x+p.getHitBoxLargeur()<x2+p2.getHitBoxLargeur() && y>y2 && y<y2+p2.getHauteur())
             return true;
+        //Collision de droite a gauche + haut en bas
         if(x>x2 && x<x2+p2.getHitBoxLargeur() && y+p.getHitBoxHauteur()>y2 && y+p.getHauteur()<y2+p2.getHauteur())
             return true;
         //Collision de droite a gauche + bas en haut

@@ -2,8 +2,12 @@ package model.entite;
 
 import javafx.beans.property.SimpleDoubleProperty;
 
+/**
+ * Classe de la ligne du joueur
+ */
 public class Ligne {
 
+    //Création de 2 propriétes pour la fin de la ligne en X et en Y
     private SimpleDoubleProperty posEndLineX = new SimpleDoubleProperty();
     public double getPosEndLineX() { return posEndLineX.get(); }
     public void setPosEndLineX(double posEndLineX) { this.posEndLineX.set(posEndLineX); }

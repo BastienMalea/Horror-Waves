@@ -2,6 +2,9 @@ package model.entite;
 
 import javafx.beans.property.SimpleDoubleProperty;
 
+/**
+ * Classe du curseur
+ */
 public class Mouse {
     private SimpleDoubleProperty posMouseX = new SimpleDoubleProperty();
     public double getPosMouseX() { return posMouseX.get(); }

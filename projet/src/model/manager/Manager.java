@@ -81,6 +81,8 @@ public class Manager {
     private Thread affichage;
     private Thread deplacement;
     private Thread temps;
+
+    //Liste qui contient les threads
     private List<Thread> listeThread;
 
     //liste de rectangle monstres
@@ -111,6 +113,7 @@ public class Manager {
     public Manager(VueJeu vueJeu){
         this.vueJeu = vueJeu;
 
+        //Création du joueur en position au centre de la fenêtre
         joueur = new Joueur(500, 300, 60, 60, 17.0/28.0, 1, 3);
         etatJoueur=new EtatJoueur(this);
 
@@ -118,62 +121,86 @@ public class Manager {
         mouse = new Mouse();
         timer = new Timer(0, 0);
 
+
+        //Instanciation des collisionners + déplaceurs
         collisionneur = new CollisionneurClassique();
         deplaceurJoueur = new DeplaceurClassique(collisionneur, joueur);
         deplaceurMechant = new DeplaceurMechant(collisionneur, this);
         deplaceurProjectile = new DeplaceurProjectile(collisionneur, this);
 
+        //Instanciation du calculateur
         calculateur = new Calculateur();
+        //Instanciation des afficheurs
         afficheurViseur = new AfficheurViseur(calculateur, ligne, joueur, mouse);
         afficheurJoueur = new AfficheurPersonnage(this);
         afficheurMonstre = new AfficheurMonstre(this);
 
+        //Instanciation de la liste Monstre
         oListeMonstre = FXCollections.observableArrayList();
         setListeMonstre(oListeMonstre);
         listeRectangle = new ArrayList<Rectangle>();
+        //Création des monstres
         createurMonstre = new CreateurMonstre(this);
 
+        //Instanciation de la liste des projectiles
         oListeProjectile = FXCollections.observableArrayList();
         setListeProjectile(oListeProjectile);
         listeRectangleProjectile = new ArrayList<Rectangle>();
 
-
-
-
+        //Instanciation de la liste des threads
         listeThread = new ArrayList<Thread>();
 
+        //Instanciation et ajout du timer aux observers de la boucle Temps
         boucleTemps = new BoucleTemps();
         boucleTemps.ajouterObservateur(timer);
+        //Création du thread
         Thread temps=new Thread(boucleTemps);
+        //Lancement du thread
         temps.start();
+        //Ajout du thread dans la listeThread
         listeThread.add(temps);
 
+        //Instanciation et ajout des deplaceurs aux observers de la boucle Deplacement
         boucleDeplacement = new BoucleDeplacement();
         boucleDeplacement.ajouterObservateur(deplaceurJoueur);
         boucleDeplacement.ajouterObservateur(deplaceurMechant);
         boucleDeplacement.ajouterObservateur(deplaceurProjectile);
+        //Création du thread
         Thread deplacement=new Thread(boucleDeplacement);
+        //Lancement du thread
         deplacement.start();
+        //Ajout du thread dans la listeThread
         listeThread.add(deplacement);
 
+        //Instanciation et ajout des afficheurs aux observers de la boucle affichage
         boucleAffichage = new BoucleAffichage();
         boucleAffichage.ajouterObservateur(afficheurViseur);
         boucleAffichage.ajouterObservateur(afficheurJoueur);
         boucleAffichage.ajouterObservateur(afficheurMonstre);
+        //Création du thread et ajout de celui-ci dans la listeThread
         Thread affichage=new Thread(boucleAffichage);
+        //Lancement du thread
         affichage.start();
+        //Ajout du thread dans la listeThread
         listeThread.add(affichage);
 
+        //Instanciation et ajout du créateurMonstre aux observers de la boucle Jeu
         boucleJeu = new BoucleJeu();
         boucleJeu.ajouterObservateur(createurMonstre);
+        //Création du thread et ajout de celui-ci dans la listeThread
         Thread jeu = new Thread(boucleJeu);
+        //Lancement du thread
         jeu.start();
+        //Ajout du thread dans la listeThread
         listeThread.add(jeu);
 
+        //Instanciation et ajout de l'état du Joueur aux observers de la boucle EtatJoueur
         boucleEtatJoueur = new BoucleEtatJoueur();
         boucleEtatJoueur.ajouterObservateur(etatJoueur);
         Thread etat = new Thread(boucleEtatJoueur);
+        //Lancement du thread
         etat.start();
+        //Ajout du thread dans la listeThread
         listeThread.add(etat);
     }
 
@@ -246,6 +273,10 @@ public class Manager {
         vueJeu.getListeProjectileVue().getChildren().add(listeRectangleProjectile.get(listeRectangleProjectile.size()-1));
     }
 
+    /**
+     * Méthode qui stop les thread une fois que le joueur à 0 points de vies
+     * et lance le stage "GameOver.fxml"
+     */
     public void stopPartie(){
         if(joueur.getPv()==0){
             for(Thread thread: listeThread){
@@ -265,44 +296,78 @@ public class Manager {
 
     }
 
+    /**
+     * get qui retourne le joueur
+     */
     public Personnage getJoueur(){
         return joueur;
     }
 
+
+    /**
+     * get qui retourne le colisionneur
+     */
     public Collisionneur getCollisionneur(){
         return collisionneur;
     }
 
+    /**
+     * get qui retourne le deplaceurClassique
+     */
     public DeplaceurClassique getDeplaceur(){return (DeplaceurClassique) deplaceurJoueur;}
 
+    /**
+     * get qui retourne le curseur
+     */
     public Mouse getMouse(){
         return mouse;
     }
 
+    /**
+     * get qui retourne le timer
+     */
     public Timer getTimer(){
         return timer;
     }
 
+    /**
+     * get qui retourne la ligne
+     */
     public Ligne getLigne(){
         return ligne;
     }
 
+    /**
+     * get qui retourne la vueJeu
+     */
     public VueJeu getVueJeu(){
         return vueJeu;
     }
 
+    /**
+     * get qui retourne l'afficheur
+     */
     public Afficheur getAfficheurMonstre(){
         return afficheurMonstre;
     }
 
+    /**
+     * get qui retourne le calculateur
+     */
     public Calculateur getCalculateur(){
         return calculateur;
     }
 
+    /**
+     * get qui retourne la liste de Rectangle
+     */
     public List<Rectangle> getListeRectangle(){
         return listeRectangle;
     }
 
+    /**
+     * get qui retourne la liste des rectangles pour les projectiles
+     */
     public List<Rectangle> getListeRectangleProjectile(){
         return listeRectangleProjectile;
     }

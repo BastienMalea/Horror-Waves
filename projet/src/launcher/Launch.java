@@ -6,10 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Launcher de notre jeu
+ */
 public class Launch extends Application {
     private static Stage primaryStage;
     private static Stage stage;
 
+    /**
+     * Methode qui lance le jeu en chargant un stage avec une scene
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -26,9 +34,10 @@ public class Launch extends Application {
         primaryStage.show();
     }
 
-
-    public static Stage getStage(){ return stage; }
-
+    /**
+     * Methode qui retourne le stage Principal
+     * @return
+     */
     public static Stage getPrimaryStage(){
         return primaryStage;
     }

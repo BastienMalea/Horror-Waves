@@ -1,5 +1,9 @@
 package model.entite;
 
+
+/**
+ * Classe du monstre du jeu
+ */
 public class Monstre extends Personnage{
     private int type;
 
@@ -7,7 +11,7 @@ public class Monstre extends Personnage{
         super(x, y, hauteur, largeur, ratioHitBoxX, ratioHitBoxY, pv);
         this.type = type;
     }
-
+    //Retourne le type de monstre
     public int getType() {
         return type;
     }
