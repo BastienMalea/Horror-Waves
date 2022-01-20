@@ -1,6 +1,7 @@
 package model.entite;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Personnage {
 
@@ -45,13 +46,19 @@ public abstract class Personnage {
         public void setPosCentreY(double posCentreY) { this.posCentreY.set(posCentreY); }
         public SimpleDoubleProperty posCentreYProperty() { return posCentreY; }
 
+    private SimpleIntegerProperty pv = new SimpleIntegerProperty();
+        public int getPv() { return pv.get(); }
+        public void setPv(int pv) { this.pv.set(pv);}
+        public SimpleIntegerProperty pvProperty() { return pv; }
 
-    public Personnage(double x, double y, double hauteur, double largeur, double ratioHitBoxX, double ratioHitBoxY){
+
+    public Personnage(double x, double y, double hauteur, double largeur, double ratioHitBoxX, double ratioHitBoxY, int pv){
         setHauteur(hauteur);
         setLargeur(largeur);
         setHitBoxHauteur(hauteur*ratioHitBoxY);
         setHitBoxLargeur(largeur*ratioHitBoxX);
         setPosX(x);
         setPosY(y);
+        setPv(pv);
     }
 }

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.shape.Rectangle;
 import model.affichage.Afficheur;
 import model.affichage.AfficheurViseur;
+import model.affichage.EtatJoueur;
 import model.boucle.BoucleAffichage;
 import model.boucle.BoucleDeplacement;
 import model.boucle.BoucleTemps;
@@ -35,6 +36,7 @@ public class Manager {
     private Timer timer;
     private Mouse mouse;
     private Ligne ligne;
+    private EtatJoueur etatJoueur;
 
     //calcul les collisions
     private Collisionneur collisionneur;
@@ -71,7 +73,8 @@ public class Manager {
     public Manager(VueJeu vueJeu){
         this.vueJeu = vueJeu;
 
-        joueur = new Joueur(250, 200, 60, 60, 17.0/28.0, 1);
+        joueur = new Joueur(250, 200, 60, 60, 17.0/28.0, 1, 3);
+        etatJoueur=new EtatJoueur(this);
 
         ligne = new Ligne(250, 200);
         mouse = new Mouse();
@@ -105,12 +108,13 @@ public class Manager {
 
         boucleAffichage = new BoucleAffichage();
         boucleAffichage.ajouterObservateur(afficheurViseur);
+        boucleAffichage.ajouterObservateur(etatJoueur);
         new Thread(boucleAffichage).start();
 
     }
 
     public void creerMonstre(double x, double y){
-        oListeMonstre.add(new Monstre(x,y,10,10, 1, 1));
+        oListeMonstre.add(new Monstre(x,y,10,10, 1, 1, 1));
         setListeMonstre(oListeMonstre);
         listeRectangle.add(new Rectangle());
         listeRectangle.get(listeRectangle.size()-1).setId(String.valueOf(listeRectangle.size()-1));
