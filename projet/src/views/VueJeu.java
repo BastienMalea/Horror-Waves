@@ -15,6 +15,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import launcher.Launch;
+import model.entite.Monstre;
+import model.entite.Personnage;
 import model.manager.Manager;
 
 import javax.swing.text.html.ImageView;
@@ -61,9 +63,6 @@ public class VueJeu extends AnchorPane {
         joueurVue.heightProperty().bind(manager.getJoueur().hauteurProperty());
         joueurVue.widthProperty().bind(manager.getJoueur().largeurProperty());
 
-
-
-        //ptsDeVie.getStyleClass().add("label_pv");
         ptsDeVie.setLayoutX(300);
         Bindings.bindBidirectional(ptsDeVie.textProperty(), manager.getJoueur().pvProperty(), converter);
         Bindings.bindBidirectional(timer.textProperty(), manager.getTimer().tempsProperty(), converter);
