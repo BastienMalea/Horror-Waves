@@ -33,6 +33,7 @@ import views.VueJeu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class Manager {
@@ -42,9 +43,6 @@ public class Manager {
     private Mouse mouse;
     private Ligne ligne;
     private EtatJoueur etatJoueur;
-
-    //images
-
 
     //calcul les collisions
     private Collisionneur collisionneur;
@@ -70,6 +68,12 @@ public class Manager {
     private Boucleur boucleAffichage;
     //boucle pour la génération de monstre
     private Boucleur boucleJeu;
+
+    //Threads
+    private Thread affichage;
+    private Thread deplacement;
+    private Thread temps;
+    private List<Thread> listeThread;
 
     //liste de rectangle monstres
     private List<Rectangle> listeRectangle;
@@ -110,27 +114,35 @@ public class Manager {
         listeRectangle = new ArrayList<Rectangle>();
         createurMonstre = new CreateurMonstre(this);
 
+        listeThread = new ArrayList<Thread>();
 
         boucleTemps = new BoucleTemps();
         boucleTemps.ajouterObservateur(timer);
-        new Thread(boucleTemps).start();
+        Thread temps=new Thread(boucleTemps);
+        temps.start();
+        listeThread.add(temps);
 
         boucleDeplacement = new BoucleDeplacement();
         boucleDeplacement.ajouterObservateur(deplaceurJoueur);
         boucleDeplacement.ajouterObservateur(deplaceurMechant);
-        new Thread(boucleDeplacement).start();
+        Thread deplacement=new Thread(boucleDeplacement);
+        deplacement.start();
+        listeThread.add(deplacement);
 
         boucleAffichage = new BoucleAffichage();
         boucleAffichage.ajouterObservateur(afficheurViseur);
         boucleAffichage.ajouterObservateur(afficheurJoueur);
         boucleAffichage.ajouterObservateur(afficheurMonstre);
         boucleAffichage.ajouterObservateur(etatJoueur);
-        new Thread(boucleAffichage).start();
+        Thread affichage=new Thread(boucleAffichage);
+        affichage.start();
+        listeThread.add(affichage);
 
         boucleJeu = new BoucleJeu();
         boucleJeu.ajouterObservateur(createurMonstre);
-        new Thread(boucleJeu).start();
-
+        Thread jeu = new Thread(boucleJeu);
+        jeu.start();
+        listeThread.add(jeu);
     }
 
 
@@ -171,6 +183,16 @@ public class Manager {
         listeRectangle.get(listeRectangle.size()-1).widthProperty().bind(oListeMonstre.get(oListeMonstre.size()-1).largeurProperty());
         listeRectangle.get(listeRectangle.size()-1).setFill(new ImagePattern(img));
         vueJeu.getListeMonstreVue().getChildren().add(listeRectangle.get(listeRectangle.size()-1));
+    }
+
+    public void stopPartie(){
+        if(joueur.getPv()==0){
+            for(Thread thread: listeThread){
+                thread.stop();
+            }
+
+        }
+
     }
 
     public Personnage getJoueur(){

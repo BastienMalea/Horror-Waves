@@ -12,11 +12,23 @@ public class EtatJoueur extends Observeur {
         this.manager=manager;
     }
 
+    public Boolean verifierVie(int pv){
+        if(pv==0)
+            return true;
+        return false;
+    }
+
     @Override
     public void update() {
         for(Personnage monstre: manager.getListeMonstre()) {
-            if (manager.getCollisionneur().isCollisionEntity(manager.getJoueur(), monstre));
-                manager.getJoueur().setPv(manager.getJoueur().getPv()-1);
+            if(manager.getCollisionneur().isCollisionEntity(monstre, manager.getJoueur()))
+            {
+                if(verifierVie(manager.getJoueur().getPv()))
+                    manager.stopPartie();
+                else
+                    manager.getJoueur().setPv(manager.getJoueur().getPv()-1);
+            }
+
         }
     }
 }
