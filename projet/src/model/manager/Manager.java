@@ -36,8 +36,6 @@ public class Manager {
     private Mouse mouse;
     private Ligne ligne;
 
-    //Navigue entre les vues
-    private Navigateur navigateur;
     //calcul les collisions
     private Collisionneur collisionneur;
     //calcul les déplacements
@@ -144,7 +142,5 @@ public class Manager {
     public Ligne getLigne(){
         return ligne;
     }
-
-    public Navigateur getNavigateur(){return navigateur;}
 
 }

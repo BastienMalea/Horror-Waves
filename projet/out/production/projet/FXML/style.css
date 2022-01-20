@@ -1,5 +1,13 @@
-#fenetre{
+#jeu{
     -fx-background-image: url("/Image/Background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1200 800;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#menu{
+    -fx-background-image: url("/Image/MenuBackground.jpg");
     -fx-background-repeat: stretch;
     -fx-background-size: 1200 800;
     -fx-background-position: center center;
